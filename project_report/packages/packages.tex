@@ -28,14 +28,6 @@
 \usepackage{amssymb}
 \usepackage{changepage}
 
-%Diego package
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\renewcommand{\thealgorithm}{}
-\floatname{algorithm}{}
-\usepackage{amsmath}
-\usepackage{mathtools}
-
 \usepackage[most]{tcolorbox}
 \usepackage{listings}
 \usepackage{xcolor}
@@ -66,4 +58,17 @@
     breaklines=true, % Permette di andare a capo automaticamente
     morekeywords={uint8_t, uint16_t, uint32_t, size_t}, % Aggiunta di tipi standard del C
     escapeinside={(*@}{@*)}, % Definisce i caratteri di escape per inserire comandi LaTeX
+}
+
+\newtcbox{\cmd}{
+  on line,
+  colback=gray,
+  coltext=white,
+  opacityback=1,
+  boxrule=0pt,
+  arc=4pt,
+  left=1pt,
+  right=1pt,
+  top=0pt,
+  bottom=0pt
 }

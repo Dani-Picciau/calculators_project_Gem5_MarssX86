@@ -2,5 +2,74 @@
 \externaldocument{../../main_document/main}
 
 \begin{document}
-\section{Installazione e setup dei simulatori}
+\section{Installazione e setup dei simulatori per Windows e macOS}
+\subsection{Premessa fondamentale: architetture e compatibilità}Prima di procedere all'installazione e al setup dei simulatori è necessario fare una premessa importante che riguarda l'ecosistema nel quale vengono eseguiti.
+
+\vspace{8pt}
+\noindent
+Questi due simulatori architetturali (Gem5 e MarssX86) nascono e vengono sviluppati nativamente per sistemi Unix-like.
+\begin{itemize}[leftmargin=1em]
+    \item \textbf{macOS} è un sistema certificato Unix. "Parla la stessa lingua" di Linux, quindi può eseguire molti di questi programmi nativamente (direttamente dal terminale), con il solo aiuto di alcune librerie esterne.
+    \item \textbf{Windows} ha un'architettura completamente diversa, per cui non può eseguire nativamente questi programmi. Per poterli eseguire è quindi necessario utilizzare delle soluzioni di \textbf{virtualizzazione o sottosistemi} per creare l'ambiente Unix necessario.
+\end{itemize}
+
+\vspace{8pt}
+\noindent
+Bisogna anche considerare che, anche avendo un sistema Linux (o Unix), c'è il problema delle librerie software necessarie per compilare il codice (il "Time Gap").
+\begin{itemize}[leftmargin=1em]
+    \item \textbf{Gem5} è un software \textbf{moderno e adattivo}, che viene continuamente sviluppato e aggiornato.\\
+    Funziona senza problemi sui sistemi operativi moderni: su macOS lo si compila direttamente mentre su Windows si usa WSL con un'installazione Linux recente (Ubuntu 20.04/22.04).
+    \item \textbf{MarssX86} è un progetto "legacy" (molto vecchio, fermo ad 2012 circa). Richiede compilatori (GCC vecchi) e librerie che sono state rimosse dai sistemi operativi moderni da anni.
+\end{itemize}
+
+\vspace{8pt}
+\noindent
+Pertanto su Windows e macOS \textbf{non è possibile installarli} come semplici programmi \texttt{.exe} o \texttt{.app}, ed è necessario utilizzare delle soluzioni di \textbf{virtualizzazione o sottosistemi} per creare l'ambiente Linux necessario.
+
+\subsection{Installazione e setup del simulatore Gem5}
+Per quanto riguarda l'installazione del simulatore Gem5, la soluzione varia leggermente a seconda del sistema operativo utilizzato.
+\subsubsection{Installazione e setup di Gem5 su Windows}
+Per installare il simulatore su Windows la soluzione migliore è \textbf{WSL} (Windows Subsystem for Linux). Questo sottosistema permette di avere un terminale Ubuntu vero e proprio integrato in Windows. Dunque, l'installaziojne si compone di diversi passaggi:
+\begin{itemize}[leftmargin=1em]
+    \item \textbf{\textit{Passo 1}: attivazione di WSL}
+    \begin{enumerate}[leftmargin=1.3em]
+        \item Aprire la \textbf{PowerShell} come amministratore; 
+        \item Digitare \cmd{\texttt{wsl ---install}} e premere invio; 
+        \item Attendere il download e, una volta completato, riavvare il computer;
+        \item Al riavvio, seguire le istruzioni a schermo per creare \textit{username} e \textit{password} Ubuntu.   
+    \end{enumerate}
+
+    \vspace{8pt}
+    \item \textbf{\textit{Passo 2}: installazione delle dipendenze}\\
+    Nel terminale di Ubuntu appena aperto incollare questi comandi uno alla volta:
+    \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
+//Aggiorna i pacchetti
+sudo apt update && sudo apt upgrade -y
+    \end{lstlisting}
+    \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
+//Installa compilatori, Python e librerie necessarie a Gem5
+sudo apt install build-essential git m4 scons zlib1g zlib1g-dev libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev python3-dev python-is-python3 libboost-all-dev pkg-config -y
+    \end{lstlisting}
+
+    \vspace{8pt}
+    \item \textbf{\textit{Passo 3}: scaricare e compilare Gem5}
+    \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
+//Clonare il repository del progetto nel proprio workspace
+git clone (*@\url{https://github.com/gem5/gem5.git}@*) 
+    \end{lstlisting}
+    \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
+//Entra nella cartella
+cd workspace/gem5
+    \end{lstlisting}
+    \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
+//Avviare la compilazione (ci vorranno dai 10 ai 40 minuti)
+//Questo comando usa tutti i core della tua CPU per fare prima
+scons build/ARM/gem5.opt -j $(nproc)
+    \end{lstlisting}
+    \textbf{\textit{Note}}: se si vuole simulare RISC-V, bisogna sostituire \texttt{ARM} con \texttt{RISCV} nel comando \texttt{scons}.
+\end{itemize}
+
+\subsubsection{Installazione e setup di Gem5 su macOS}
+
+
 \end{document}
