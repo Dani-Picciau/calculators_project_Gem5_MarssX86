@@ -65,7 +65,7 @@ sudo apt install build-essential git m4 scons zlib1g zlib1g-dev libprotobuf-dev 
     \item \textbf{\textit{Passo 3}: scaricare e compilare Gem5}\\
     Prima di \textbf{scaricare} Gem5 è consigliato creare una cartella adatta a poterlo contenere.\\
     Quest'operazione viene svolta principalmente perché in futuro dovremo scaricare anche il simulatore architetturale \textbf{MarssX86}: così facendo avremo entrambi i simulatori in una cartella apposita.\\
-    Senza spostarsi dalla posizione iniziale \texttt{/home/utente} si va a creare la cartella:
+    Senza spostarsi dalla posizione iniziale \texttt{/home/NomeUtente} si va a creare la cartella:
     \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
 mkdir dev_local // Crea la cartella dev_local
 cd dev_local // Ci si sposta dentro dev_local per scaricare gem5
@@ -174,7 +174,7 @@ docker run --volume /Users/NomeUtente/dev_local/gem5:/gem5 --rm -it ghcr.io/gem5
         \end{lstlisting}
         Il completamento di questo comando dovrebbe aprire una riga di comando di questo tipo, ad indicare che siamo all'interno del container Ubuntu.
         \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
-root@1ab1ef08f2f:/#    
+root@{...}:/#    
         \end{lstlisting}
     \end{enumerate}
 
@@ -182,7 +182,7 @@ root@1ab1ef08f2f:/#
     \item \textbf{\textit{Passo 3}: scaricare e compilare Gem5}\\
     All'interno del container Ubuntu appena creato, è possibile \textbf{scaricare} il repository ufficiale tramite il comando \texttt{git clone}:
     \begin{lstlisting}[style=mystyle, language=C++, escapeinside={(*@}{@*)}]
-root@1ab1ef08f2f:/#  git clone (*@\url{https://github.com/gem5/gem5.git}@*) 
+root@{...}:/#  git clone (*@\url{https://github.com/gem5/gem5.git}@*) 
     \end{lstlisting}
     Verrà creata una cartella "gem5" al cui interno saranno al cui interno saranno presenti tutti i file necessari per la compilazione del simulatore.
 
@@ -198,7 +198,7 @@ root@1ab1ef08f2f:/#  git clone (*@\url{https://github.com/gem5/gem5.git}@*)
     Una volta che il repository è stato clonato ci si sposta all'interno della cartella "gem5" per far partire la \textbf{compilazione del simulatore}, utilizzando $1$ o al massimo $2$ core per evitare che la compilazione vada in crash a causa della saturazione della RAM a dispozione.
     \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
 // Mi sposto all'interno della cartella gem5
-root@1ab1ef08f2f:/#  cd gem5 
+root@1ab1ef08f2f:/# cd gem5 
 
 // Compilazione ARM
 root@1ab1ef08f2f:/gem5# scons build/ARM/gem5.opt -j1 
@@ -222,83 +222,183 @@ root@1ab1ef08f2f:/gem5# scons build/ARM/gem5.opt -j1
 
 
 \subsection{Installazione e setup del simulatore MarssX86}
-Come detto precedentemente al capitolo \ref{ch1:par:paragrafo_1_1}, MarssX$86$ è troppo vecchio per funzionare su WSL moderlo o su macOS. Esistono due strade che risolvono il problema, le quali funzionano sia per Windows che per macOS:
-
-\subsubsection{Docker}
-L'utilizzo di Docker è da prendere in considerazione nel caso in cui si voglia una maggiore rapidità, si è comodi con la riga di comando e si vuole tenere il pc pulito. Infatti, permette di scaricare un immagine di Ubuntu $14.04$ e lavorarci dentro da terminale senza installare un intero sistema operativo.
+Nonostante sia un processo abbastanza lungo e tedioso la scelta consigliata per effettuare l'installazione del simulatore, sia per Windows che per macOS, è utilizzare Docker.
+\subsubsection{Installazione e setup di MarssX86 su Windows}
+L'utilizzo di Docker è la scelta raccomandata per mantenere un flusso di lavoro unificato. Grazie all'integrazione con WSL 2, è possibile avviare l'ambiente "legacy" necessario per MarssX86 direttamente dallo stesso terminale utilizzato per Gem5 (come visto al passo $1$ del capitolo \ref{par:ch_1.2.1}), senza dover configurare macchine virtuali esterne pesanti.
 \begin{itemize}[leftmargin=1em]
-    \item \textbf{\textit{Passo 1}: Installare Docker}
+    \item \textbf{\textit{Passo 1}: Configurazione (WSL + Docker)}
     \begin{enumerate}[leftmargin=1.3em]
-        \item Windows/macOS: scaricare e installare Docker desktop dal sito ufficiale \url{https://www.docker.com/};
-        \item Avviarlo e assicurarsi che sia attivo (controllare l'icona della balena nella barra delle applicazioni).
+        \item Scaricare e installare Docker desktop dal sito ufficiale \url{https://www.docker.com/};
+        \item Aprire docker desktop su Windows;
+        \item Andare nelle impostazioni (icona dell'ingranaggio in alto a destra);
+        \item Spostarsi nella sezione \textbf{resources} e poi in \textbf{WSL integration};
+        \item Assicurarsi di attivare la casella "Ubuntu" per abilitare l'integrazione;
+        \item Cliccare su \textit{"apply e restart"}
     \end{enumerate}
-
+    A questo punto, aprendo il terminale WSL, è possibile verificarne il funzionamento tramite il comando \cmd{\texttt{docker --version}}.
+    
     \vspace{8pt}
-    \item \textbf{\textit{Passo 2}: Creare l'ambiente (il Dockerfile)}\\
-    Creare una cartella sul computer chiamata \textbf{\textit{"marss\_project"}} e al suo interno creare un file di testo chiamato  \textbf{\textit{"Dockerfile"}} in cui andrà incollato al suo interno il seguente contenuto:
-    \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
-// Si usa una versione vecchia di Ubuntu compatibile con MarssX86
-FROM ubuntu:14.04
+    \noindent
+    \item \textbf{\textit{Passo 2}: preparazione del container}
+    \begin{enumerate}[leftmargin=1.3em]
+        \item Nel terminale WSL spostarsi all'interno della cartella \texttt{/home/NomeUtente/dev\_local} (come fatto al passo $3$ del capitolo \ref{par:ch_1.2.1}), e creare una cartella per il progetto Marss con al suo interno il file di definizione dell'ambiente:
+        \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+mkdir marss
+cd marss
+nano Dockerfile
+        \end{lstlisting}
+        All'interno dell'editor che si aprirà dopo l'ultimo comando (\texttt{nano Dockerfile}), incollare il seguente contenuto che definisce un ambiente Ubuntu 18.04 con tutte le dipendenze necessarie.\\
+        Nonostante MarssX86 sia stato scritto in un ambiente Ubuntu $14.04$ (risalente al 2012), non è possibile replicare tale ambiente, poiché da molti anni i server hanno cancellato tutti i file. Dunque una possibile strategia è quella di usare un sistema operativo più recente (Ubuntu 18.04) i cui server funzionano perfettamente, ma installare manualmente i "vecchi" compilatori.
+        \begin{lstlisting}[style=mystyle, language=bash, escapeinside={(*@}{@*)}]
+# Usiamo Ubuntu 18.04 che ha server ancora attivi e stabili
+FROM ubuntu:18.04
 
-// Aggiornare i repository per trovare i vecchi pacchetti
-RUN apt-get update && \
-    apt-get install -y build-essential git scons zlib1g-dev python g++ vim
+# Aggiorniamo i repository (funzionera' senza errori 404)
+RUN apt-get update
 
-// Impostare la cartella di lavoro
+# Installiamo i tool di base e specificamente GCC 4.8 / G++ 4.8
+# MarssX86 richiede queste versioni antiche per compilare
+RUN apt-get install -y build-essential git scons zlib1g-dev python2.7 python-minimal g++ \
+    vim libsdl1.2-dev gcc-4.8 g++-4.8
+
+# Configuriamo il sistema per usare GCC 4.8 come default assoluto
+# Questo "inganna" Marss facendogli credere di essere su un vecchio sistema
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
+
+# Cartella di lavoro
 WORKDIR /root/marss
 
-// Comando di default quando si entra nel container
 CMD ["/bin/bash"]
+        \end{lstlisting}
+        \item Rimanendo posizionati in \texttt{/home/NomeUtente/dev\_local/marss}, lanciare il comando di build per l'ambiente Ubuntu.  Verrà richiesta una password, inserire quella dell'account Ubuntu come fatto al \textbf{\textit{"Passo 1"}} del capitolo \ref{par:ch_1.2.1}.
+        \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+sudo docker build --no-cache -t marss_env .
+        \end{lstlisting}
+        \item Infine, è possibile creare l'ambiente ubuntu scelto. Servirà la password.
+        \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+sudo docker run -it --name marss_container -v "$PWD":/root/marss marss_env
+        \end{lstlisting}
+        \textbf{\textit{Nota importante}}: l'aggiunda del comando \cmd{\texttt{-v "\$PWD":/root/marss}} crea un collegamento diretto tra la cartella in cui ci si trova (\texttt{/home/NomeUtente/dev\_local/marss}) nel disco e la cartella di lavoro "virtuale" del container. Senza di esso non si vedrebbero le modifiche effettuate nel container, costringendo a copiare ogni file che si vuole utilizzare nel disco del computer, tramite comandi aggiuntivi.
+        Ovviamente, il container rimane necessario per compilare/eseguire i file dell'ambiente Ubuntu scelto.
+
+        \vspace{8pt}
+        Una volta fatto ciò, si dovrebbe essere riusciti ad entrare nell'ambiente di simulazione, e a schermo dovrebbe vedersi questo:
+        \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+root@{...}:~/marss#
+        \end{lstlisting}   
+        \begin{figure}[H]
+            \centering
+            \vspace{-10pt}
+            \includegraphics[width=0.75\textwidth]{chapter1_figures/img4.png}
+            \vspace{-5pt}
+            \caption{ambiente di simulazione del MarssX86}
+            \label{fig:ch1_fig4}
+        \end{figure}
+
+        \vspace{-15pt}
+        Inserendo subito il comando \texttt{"pwd"} si potra vedere come ci si trova in \texttt{/root/marss} come specificato nel Dockerfile.  
+        \item Per \textbf{tornare alla bash di Ubuntu} basterà scrivere il comando \texttt{"exit"} da qualsiasi posizione, mentre per rientrare nell'ambiente già creato servirà un comando differente da lanciare (posizionati in \texttt{/home/NomeUtente/dev\_local/marss}):
+        \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+docker start -ai marss_container
+        \end{lstlisting}  
+
+        \vspace{8pt}
+        Invece, per rimuovere il container serve prima sapere il container id. Nell'ambiente Ubuntu (quindi dopo avere fatto \texttt{"exit"}) utilizzare il seguente comando:
+        \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+docker ps
+        \end{lstlisting}     
+        Subito dopo
+        \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+docker rm <container id>
+        \end{lstlisting}    
+    \end{enumerate}
+
+    \vspace{8pt}
+    \item \textbf{\textit{Passo 3}: scaricare e compilare MarssX86}\\
+    Dopo essere riusciti ad entrare dentro l'ambiente di simulazione, bisogna \textbf{scaricare il repository} del progetto ufficiale (posizionati in \texttt{/root/marss}):
+    \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+root@{...}:~/marss# git clone (*@\url{https://github.com/avadhpatel/marss.git}@*)
     \end{lstlisting}
+    Una volta completata la clonazione, all'interno di \texttt{/root/marss} verrà scaricata un ulteriore cartella "marss" contenente i file reltivi al repository.\\
+    Anche in questo caso la compilazione risulta abbastanza pesante a causa della quantità di RAM richiesta. Fortunatamente, Docker desktop su Windows eredita da WSL il file \texttt{.wslconfig} (\textbf{\textit{passo 3}} del capitolo \ref{par:ch_1.2.1}) creato per fare in modo che la compilazione non vada in crash.
 
     \vspace{8pt}
-    \item \textbf{\textit{Passo 3}: costruire e avviare}\\
-    Aprire il terminale (o PowerShell) nella cartella dove è stato inserito il Dokerfile.
+    Prima di \textbf{procedere con la compilazione} ci sono alcune problematiche che vanno risolte, relative alle discrepanze tra l'utilizzo di comandi moderni e compilatori vecchi oppure causate da librerie di sicurezza moderne (già presenti nella versione $18.04$ di Ubuntu che stiamo utilizzando) che bloccano la compilazione del file finale di compilazione. Queste problematiche sono sorte in fase di compilazione stessa, e avendole individuate, è necessario risolverle per garantire il funzionamento della compilazione.
     \begin{enumerate}[leftmargin=1.3em]
-        \item \textbf{Costruzione dell'immagine } tramite il comando:
-        \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
-docker build -t marss_env .
+        \item Posizionarsi in \texttt{/root/marss/marss/ptlsim} e aprire il file \textit{"SConstruct"} che rappresenta il "cuore" del simulatore PTLsim:
+        \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+root@{...}:~/marss/marss/ptlsim# apt-get install -y nano
+root@{...}:~/marss/marss/ptlsim# nano SConstruct
         \end{lstlisting}
+        \item Una volta all'interno dell'editor di testo nano per il file \textit{"SConstruct"} cercare la riga:
+        \begin{lstlisting}[style=mystyle, escapeinside={(*@}{@*)}]
+env.Append(CCFLAGS = ['-fdiagnostics-color=always'])
+        \end{lstlisting}
+        ed eliminarla o commentarla utilizzando un "\#". Per aiutarsi è possibile entrare in modalità ricerca con la combinazione di comandi \texttt{ctrl + w}. 
 
-        \item \textbf{Ingresso nel contenitore} tramite il comando:
-        \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
-docker run -it --name marss_container marss_env
+        \vspace{8pt}
+        Subito sotto questa riga, ne dovrebbe essere presente un'altra di questo tipo:
+        \begin{lstlisting}[style=mystyle, escapeinside={(*@}{@*)}]
+env.Append(CCFLAGS = ' -std=gnu++11 ')
         \end{lstlisting}
-        Una volta dentro, il terminale "penserà" di essere nel $2014$ garantendo la possibilità di scaricare e compilare MarssX$86$ li dentro
+        la quale deve essere modificata in questo modo:
+        \begin{lstlisting}[style=mystyle, escapeinside={(*@}{@*)}]
+env.Append(CCFLAGS = ' -std=gnu++11 -U_FORTIFY_SOURCE ')
+        \end{lstlisting}  
+        In questo modo stiamo dicendo al compilatore di \textit{"disabilitare i controlli di sicurezza moderni per il codice vecchio del repository"}.\\
+        Premere \texttt{ctrl+o} per salvare le modifiche e \texttt{ctrl+x} per uscire dall'editor di testo.
+
+        \item Tornati nell'ambiente di simulazione bisogna effettuare lo stesso procedimento nel file \textit{"SConstruct"} principale, quindi non quello presente in \texttt{/root/marss/marss/ptlsim} ma in \texttt{/root/marss/marss/}, quindi:
+        \begin{lstlisting}[style=mystyle, language=C, escapeinside={(*@}{@*)}]
+root@{...}:~/marss/marss# nano SConstruct
+        \end{lstlisting}     
+        Una volta all'interno dell'editor di testo, bisogna scendere nel file fino a trovare un comando di questo tipo:
+        \begin{lstlisting}[style=mystyle, escapeinside={(*@}{@*)}]
+if int(pretty_printing) :
+    base_env = Environment(
+            CXXCOMSTR = compile_source_message,
+            CREATECOMSTR = create_header_message,
+            CCCOMSTR = compile_source_message,
+            SHCCCOMSTR = compile_shared_source_message,
+            SHCXXCOMSTR = compile_shared_source_message,
+            ARCOMSTR = link_library_message,
+            RANLIBCOMSTR = ranlib_library_message,
+            SHLINKCOMSTR = link_shared_library_message,
+            LINKCOMSTR = link_program_message,
+            )
+else:
+    base_env = Environment()
+        \end{lstlisting}    
+        Questo blocco serve a creare l'ambiente di compilazione (base\_env). Bisogna intercettare quella variabile appena è stata creata e aggiungere il \textit{"flag salvavita"} che disabilita i controlli di sicurezza troppo moderni. Dopo l'else bisogna aggiungere le seguenti righe:
+        \begin{lstlisting}[style=mystyle, escapeinside={(*@}{@*)}]
+...
+...
+
+else:
+    base_env = Environment()
+
+base_env.Append(CFLAGS = ['-U_FORTIFY_SOURCE'])
+base_env.Append(CCFLAGS = ['-U_FORTIFY_SOURCE'])
+        \end{lstlisting}    
+        Fatto ciò, nuovamente \texttt{ctrl+o} per salvare le modifiche, invio, e poi \texttt{ctrl+x} per tornare nell'ambiente di simulazione.
     \end{enumerate}
+
+    \vspace{8pt}
+    Effettuate queste modifiche è finalmente possibile \textbf{compilare} tramite il comando:
+    \begin{lstlisting}[style=mystyle, escapeinside={(*@}{@*)}]
+root@{...}:~/marss/marss# scons -Q C=1 debug=0
+    \end{lstlisting} 
+    Come risultato finale si dovrebbe visualizzare un comando di questo tipo:
+    \begin{figure}[H]
+        \centering
+        \vspace{-5pt}
+        \includegraphics[width=0.65\textwidth]{chapter1_figures/img5.png}
+        \vspace{-5pt}
+        \label{fig:ch1_fig5} 
+    \end{figure}
 \end{itemize}
 
-\subsubsection{VirtualBox}
-Invece, la VirtualBox è consigliata se si preferisce avere un'iterfaccia grafica, quindi vedere le finestre e usare un editor di testo grafico dentro la macchina virtuale, perché permette di avere un'esperienza più simile all'utilizzo di un computer fisico.
-\begin{itemize}[leftmargin=1em]
-    \item \textbf{\textit{Passo 1}: scaricare e installare il software}
-    \begin{enumerate}[leftmargin=1.3em]
-        \item Scaricare e installare \textbf{VirtualBox} al seguente indirizzo \url{https://www.virtualbox.org/};
-        \item Scaricare la ISO di Ubuntu $14.04$ LTS (Trusty Tahr) al seguente indirizzo \url{https://releases.ubuntu.com/14.04/}
-    \end{enumerate}
 
-    \vspace{8pt}
-    \item \textbf{\textit{Passo 2}: creazione della macchina virtuale}
-    \begin{enumerate}[leftmargin=1.3em]
-        \item Aprire la virtualbox e andare su "nuova";
-        \item Nome: \textit{"MarssVM"}, Tipo: \textit{"Linux"}, Versione: \textit{Ubuntu (64-bit)};
-        \item È necessario assegnare almeno 4GB di RAM e $2-4$ processori, fondamentali per la velocità di compilazione.
-        \item Creare un disco fisico di almeno 30GB;
-        \item Avviare la macchina, selezionare la ISO scaricata precedentemente e installare Ubuntu come se fosse un pc vero.
-    \end{enumerate}
 
-    \vspace{8pt}
-    \item \textbf{\textit{Passo 3}: setup interno}\\
-    Una volta che Ubuntu è stato installato nella virtual machine, aprire il terminale interno e lanciare i seguenti comandi, uno alla volta:
-    \begin{enumerate}[leftmargin=1em]
-        \item Questo comando serve per scaricare la lista aggiornata di tutto il software disponibile.
-        \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
-sudo apt-get update
-        \end{lstlisting}
-        \item Serve per installare i \textbf{compilatori di C++} (build-essential e g++) che traducono il codice in linguaggio macchina, il \textbf{gestore dei file} (scons) che lancia in automatico tutt i file necesssari, \textbf{git} per scaricare il codice da internet e \textbf{python} perché molti script di configurazione di MarssX86 sono scritti in quel linguaggio.
-        \begin{lstlisting}[style=mystyle, language=C, , escapeinside={(*@}{@*)}]
-sudo apt-get install build-essential git scons zlib1g-dev python g++
-        \end{lstlisting}
-    \end{enumerate}
-\end{itemize}
 \end{document}
