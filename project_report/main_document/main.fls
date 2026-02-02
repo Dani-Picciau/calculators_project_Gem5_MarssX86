@@ -523,9 +523,9 @@ INPUT ../chapters/ch2_workload_execution/workload_execution.tex
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/courier/pcrb8t.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/adobe/courier/pcrb8t.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/courier/pcrb8r.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchr8t.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/bitstrea/charter/bchr8t.vf
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchr8r.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmtk10.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/courier/pcrro8c.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/adobe/courier/pcrro8c.vf
 INPUT ../chapters/ch3_analysis_results/analisys_results.tex
 INPUT ../chapters/ch3_analysis_results/analisys_results.tex
 INPUT ../chapters/ch3_analysis_results/analisys_results.tex
@@ -540,6 +540,7 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt12.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb
