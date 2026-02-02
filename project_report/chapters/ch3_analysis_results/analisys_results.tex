@@ -159,8 +159,108 @@ In conclusione, l'esperimento su RISC-V sottolinea un principio fondamentale del
 
 
 \subsection{Analisi delle tre configurazioni per l'architettura MarssX86}
+L'analisi condotta sull'architettura x86 tramite il simulatore Marss ha l'obiettivo di isolare il comportamento del workload (User) rispetto all'overhead introdotto dal sistema (Total) al variare delle configurazioni microarchitetturali, poiché MarssX86 è un emulatore Full System (FS).
+
+\vspace{8pt}
+\begin{table}[tbh]
+    \begin{center}
+        \begin{tabular}{|l|c|c|c|}
+            \hline
+                \textit{Metrica} & 
+                \textit{Baseline (OoO)} & 
+                \textit{Var 1: Atom} & 
+                \textit{Var 2: Small Caches} \\
+            \hline
+            Tempo Host (s) & $9$ & $6$ & $9$ \\
+            Tempo simulato (ms) & $4,6409$ & $8,4707$ & $4,8709$ \\
+            Cicli CPU & $12.474.800$ & $22.769.162$ & $13.092.853$ \\
+            Istruzioni & $7.760.158$ & $7.448.858$ & $7.981.476$ \\
+            IPC & $0,6221$ & $0,3271$ & $0,6096$ \\
+            CPI & $1,6075$ & $3,0567$ & $1,6404$ \\
+            L1i Hit & $1.191$ & $1.641$ & $4.490$ \\
+            L1i Miss & $519$ & $482$ & $3.236$ \\
+            L1i Miss Rate & $30,35\%$ & $22,70\%$ & $41,88\%$ \\
+            L1d Hit & $3.273.198$ & $4.253.740$ & $3.292.506$ \\
+            L1d Miss & $1.869$ & $1.847$ & $43.010$ \\
+            L1d Miss Rate & $0,06\%$ & $0,04\%$ & $1,29\%$ \\
+            L2 Hit & $56$ & $71$ & $41.712$ \\
+            L2 Miss & $2.332$ & $2.258$ & $4.534$ \\
+            L2 Miss Rate & $97,65\%$ & $96,95\%$ & $9,80\%$ \\
+            Branch Mispred. & $4.561$ & $5.020$ & $6.567$ \\
+            Branch Cond. Inc. & $4.539$ & $5.020$ & $6.408$ \\
+            \hline
+        \end{tabular}
+        \caption{Confronto metriche generali di simulazione (Total)}
+        \label{tab:metrics_general}
+    \end{center}
+\end{table}
+
+\begin{table}[tbh]
+    \begin{center}
+        \begin{tabular}{|l|c|c|c|}
+            \hline
+                \textit{Metrica} & 
+                \textit{Baseline (OoO)} & 
+                \textit{Var 1: Atom} & 
+                \textit{Var 2: Small Caches} \\
+            \hline
+            Tempo simulato (ms) & $4,6123$ & $8,4273$ & $4,6774$ \\
+            Cicli CPU & $12.397.779$ & $22.652.712$ & $12.572.917$ \\
+            Istruzioni & $7.733.613$ & $7.430.872$ & $7.733.133$ \\
+            IPC & $0,6238$ & $0,3280$ & $0,6151$ \\
+            CPI & $1,6031$ & $3,0485$ & $1,6259$ \\
+            L1i Hit & $1.191$ & $61$ & $4.490$ \\
+            L1i Miss & $519$ & $20$ & $3.236$ \\
+            L1i Miss Rate & $30,35\%$ & $24,69\%$ & $41,88\%$ \\
+            L1d Hit & $3.265.122$ & $4.247.880$ & $3.226.082$ \\
+            L1d Miss & $1.139$ & $1.201$ & $40.130$ \\
+            L1d Miss Rate & $0,03\%$ & $0,03\%$ & $1,23\%$ \\
+            L2 Hit & $21$ & $68$ & $40.368$ \\
+            L2 Miss & $1.637$ & $1.153$ & $2.998$ \\
+            L2 Miss Rate & $98,73\%$ & $94,43\%$ & $6,91\%$ \\
+            Branch Mispred. & $4.199$ & $4.182$ & $4.176$ \\
+            Branch Cond. Inc. & $4.194$ & $4.182$ & $4.172$ \\
+            \hline
+        \end{tabular}
+        \caption{Tabella USER (Solo Workload)}
+
+        \vspace{8pt}
+        \textbf{\textit{Note}}: Questa tabella isola l'efficienza pura dell'algoritmo di moltiplicazione matrici.
+        \label{tab:metrics_user}
+    \end{center}
+\end{table}
+
+\FloatBarrier
+
+\subsubsection{Statistiche generali su CPU e istruzioni} Il primo confronto riguarda l'efficienza di esecuzione delle tre varianti: Baseline (Out-of-Order), Atom (In-Order) e Small Caches (Out-of-Order con cache ridotta).
+
+Osservando i dati User, che rappresentano il puro carico computazionale della moltiplicazione di matrici, notiamo che il numero di istruzioni rimane costante (~7.73 milioni), confermando la correttezza deterministica della simulazione. Tuttavia, i Cicli CPU variano drasticamente: \begin{itemize} \item La configurazione Atom richiede il 82\% di cicli in più (22.6M) rispetto alla Baseline (12.4M) per eseguire lo stesso codice. Questo crollo dell'IPC (da 0,62 a 0,33) è intrinseco alla natura In-Order della pipeline, che non può mascherare le latenze di esecuzione tramite l'esecuzione fuori ordine. \item La configurazione Small Caches, nonostante la drastica riduzione della memoria, mostra una resilienza notevole: l'IPC User cala solo marginalmente (0,615 vs 0,624). Questo dimostra che il motore Out-of-Order riesce a nascondere efficacemente le latenze aggiuntive introdotte dal sottosistema di memoria. \end{itemize}
+
+Un dato interessante riguarda il Tempo di Simulazione (Host): la configurazione Atom completa la simulazione in meno tempo (6s) rispetto alle versioni OoO (9s). Ciò è dovuto alla minore complessità del modello matematico della CPU In-Order, che non deve simulare strutture complesse come il Reorder Buffer o la rinomina dei registri.
+
+\subsubsection{Statistiche Cache} L'analisi della gerarchia di memoria evidenzia come la dimensione delle cache influenzi il traffico dati tra la CPU e la memoria principale.
+
+\textbf{\textit{Cache hit e Cache Miss L1}} \ La Cache L1 Dati (L1d) si rivela il componente critico. Nella Baseline e nella configurazione Atom (128kB), i miss User sono trascurabili (~1.100), indicando che l'intero working set delle matrici risiede comodamente nella cache. Nella configurazione Small Caches (32kB), invece, assistiamo a un fenomeno di \textit{capacity miss}: i miss User salgono a 40.130. La cache è troppo piccola per contenere i blocchi di matrice riutilizzati dall'algoritmo, costringendo la CPU a continue espulsioni e ricaricamenti. È interessante notare come il core Atom generi circa 1 milione di accessi L1 in più rispetto alla Baseline: mancando di meccanismi di \textit{Store-to-Load Forwarding}, la CPU In-Order è costretta a formalizzare ogni passaggio di dati attraverso la cache.
+
+\textbf{\textit{Cache hit e Cache Miss L2}} \ La Cache L2 agisce come "rete di salvataggio". \begin{itemize} \item Nelle configurazioni con L1 grande (Baseline/Atom), la L2 è scarsamente utilizzata (pochi accessi, quasi tutti cold miss), risultando in un miss rate elevato ma irrilevante in termini assoluti. \item Nella configurazione Small Caches, la L2 diventa fondamentale. Essa intercetta quasi la totalità dei dati espulsi dalla L1: su 43.000 accessi totali, ben 41.712 sono Hit. \end{itemize} Questo spiega perché le prestazioni della Small Caches non crollano: sebbene la L1 fallisca spesso, i dati vengono recuperati dalla L2 (molto più veloce della RAM), mitigando la penalità temporale.
+
+\subsubsection{Analisi dei Branch} L'analisi della predizione dei salti rivela un'interessante correlazione indiretta con la memoria.
+
+Confrontando i dati Total (Sistema completo), si nota un aumento dei \textit{Branch Mispredictions} nella configurazione Small Caches (6.567) rispetto alla Baseline (4.561). Tuttavia, isolando i dati User, il numero di errori rimane pressoché identico (~4.180) per tutte le configurazioni.
+
+Questa discrepanza porta a una conclusione importante: Il peggioramento apparente nella predizione dei salti non è dovuto a una difficoltà del processore nel prevedere il flusso del programma di moltiplicazione (che rimane regolare), ma è un effetto collaterale dello stress sulla memoria. L'alto numero di miss in L1 nella versione Small Caches costringe il sistema operativo a intervenire più spesso (gestione page fault, buffer, interrupt). Il codice del Kernel, essendo più irregolare, induce il predittore in errore più frequentemente. Pertanto, il calo di efficienza del front-end è una conseguenza diretta del collo di bottiglia nel back-end (memoria).
+
+\subsubsection{Conclusioni} L'analisi condotta sull'architettura MarssX86 permette di trarre tre conclusioni fondamentali riguardo l'interazione tra microarchitettura, memoria e sistema operativo.
+
+In primo luogo, si conferma la \textbf{superiorità dell'esecuzione Out-of-Order} per carichi di lavoro \textit{memory-intensive} come la moltiplicazione di matrici. La configurazione Baseline (OoO) ha completato il task con la metà dei cicli rispetto alla configurazione Atom (In-Order), dimostrando come la complessità hardware (rinomina dei registri, esecuzione speculativa) sia necessaria per mascherare le latenze di accesso ai dati, mantenendo un CPI vicino a 1,6 contro il 3,0 dell'Atom.
+
+In secondo luogo, l'esperimento ha evidenziato la \textbf{resilienza della pipeline OoO} di fronte a risorse scarse. Nonostante la riduzione della Cache L1 abbia causato un aumento dei miss di oltre il 2000\% (da ~1.800 a ~43.000), l'IPC del workload utente è rimasto quasi invariato (0,615 vs 0,624). Questo risultato controintuitivo dimostra che un moderno processore OoO, supportato da una Cache L2 capiente ed efficiente, è in grado di tollerare fallimenti massicci nel primo livello di memoria senza stallare l'esecuzione del programma principale.
+
+Infine, la disaggregazione dei dati tra User e Kernel ha svelato il vero costo del sottodimensionamento della cache: l'\textbf{overhead di sistema}. Il degrado delle prestazioni globali nella configurazione \textit{Small Caches} non è imputabile al rallentamento dell'algoritmo di calcolo, bensì all'esplosione dell'attività del Sistema Operativo (+830\% di istruzioni kernel), costretto a intervenire massicciamente per gestire la congestione del sottosistema di memoria. Ne consegue che, in scenari di progettazione embedded o low-power, il dimensionamento della cache L1 non deve essere valutato solo in funzione del throughput dell'applicazione, ma anche per garantire la stabilità e l'efficienza dei servizi di sistema.
 
 
+
+%\newpage
 \subsection{Analisi delle baseline tra le architetture}
 \begin{table}[tbh]
     \begin{center}
