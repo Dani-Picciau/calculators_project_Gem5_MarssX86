@@ -1,8 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1770022638.37886 "/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/main_document/main.tex" "main.pdf" "main" 1770022640.0476 0
+["pdflatex"] 1770043300.06389 "/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/main_document/main.tex" "main.pdf" "main" 1770043301.80275 0
   "../chapters/ch1_installation_setup/installation_setup.tex" 1770022567.91206 38203 0fcc7d85dab80108259cc8f15b696f99 ""
   "../chapters/ch2_workload_execution/workload_execution.tex" 1770022567.91434 34197 856495333356c583d5335bf816dca921 ""
-  "../chapters/ch3_analysis_results/analisys_results.tex" 1770022567.91616 16946 5c13d3c95c630e7a5757c36c7867057b ""
+  "../chapters/ch3_analysis_results/analisys_results.tex" 1770043066.99173 25429 31aa69a04aa6e3e38da3b3e612f31338 ""
   "../chapters/index/index.tex" 1770022567.91629 1060 022a1fbb886db982432f3a0c90b9f984 ""
   "../figures/../figures/chapter1_figures/img1.png" 1770022567.9168 12413 44d971560e500fde527b73f2b7c6fa4e ""
   "../figures/../figures/chapter1_figures/img2.png" 1770022567.91745 181655 5c14c4dc39d23b127569998d511dc1d0 ""
@@ -19,7 +19,7 @@
   "../figures/chapter1_figures/img6.png" 1770022567.91968 177677 8906d2ea2fcd942ab794230715fc664f ""
   "../figures/chapter1_figures/img7.png" 1770022567.92023 156928 f8f7f9d4b582f063ec4ca5094e92b8f5 ""
   "../figures/logo_uniss.pdf" 1770022567.92043 81294 b92538a556641100a7ca6ee13f7f57da ""
-  "../packages/packages.tex" 1770022567.92592 3191 d97ac73d94f859da77b8d41ed3fa409c ""
+  "../packages/packages.tex" 1770042266.46083 3213 16a34fa5065d39451a7435bcdb16ef79 ""
   "/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/main_document/main.tex" 1770022567.92566 397 08eab6c72c202d535fc693d27bec548b ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
@@ -219,6 +219,7 @@
   "/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd" 1616454256 568 a5494d810f2680caf10205cd1226c76c ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd" 1616454256 1882 28c08db1407ebff35a658fd141753d16 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd" 1616454256 2682 555da1faa2e266801e4b221d01a42cb5 ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/makecell/makecell.sty" 1249334690 15773 2dd7dde1ec1c2a3d0c85bc3b273e04d8 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype-pdftex.def" 1739394495 49650 26a5e891c8da4553198575ba0517c0e5 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.cfg" 1739394495 27015 bd167d0154f271c424b157d8894ae4a4 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.sty" 1739394495 102775 6624742dafeb6f262a13657f9f77f048 ""
@@ -280,10 +281,10 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1766415496 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1766415393 3345742 52145e767bf22202126b4edeee97f14b ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "main.aux" 1770022639.94764 8095 88faec7903faa1e3c28430dea8d0960f "pdflatex"
-  "main.out" 1770022639.94864 9574 44d20aa8b43635103d675c1367fec04b "pdflatex"
+  "main.aux" 1770043301.69973 8866 7443deb12822cd559872059498b3febb "pdflatex"
+  "main.out" 1770043301.70094 10089 b10b8971c84abf84ba65ae110bf67cfa "pdflatex"
   "main.tex" 1770022567.92566 397 08eab6c72c202d535fc693d27bec548b ""
-  "main.toc" 1770022639.94885 3938 1c58a2b6d0a1de8f5635bb9c02ea5e1f "pdflatex"
+  "main.toc" 1770043301.70116 4297 9c080f326e3f29f7741a44993cd7351f "pdflatex"
   (generated)
   "main.aux"
   "main.log"

@@ -313,6 +313,8 @@ INPUT /usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfad
 INPUT /usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
 OUTPUT main.pdf
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
+INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/makecell/makecell.sty
+INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/makecell/makecell.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/subfiles/subfiles.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/subfiles/subfiles.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/import/import.sty
@@ -413,9 +415,9 @@ INPUT ./main.toc
 INPUT ./main.toc
 INPUT main.toc
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchb8t.tfm
-OUTPUT main.toc
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/bitstrea/charter/bchb8t.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchb8r.tfm
+OUTPUT main.toc
 INPUT ../chapters/ch1_installation_setup/installation_setup.tex
 INPUT ../chapters/ch1_installation_setup/installation_setup.tex
 INPUT ../chapters/ch1_installation_setup/installation_setup.tex

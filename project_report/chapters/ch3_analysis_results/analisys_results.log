@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.28)  2 FEB 2026 01:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.22)  2 FEB 2026 15:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.tex
-(/Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.tex
+**/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.tex
+(/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/subfiles/subfiles.cls
@@ -12,7 +12,7 @@ Document Class: subfiles 2020/11/14 v2.2 Multi-file projects (class)
 Preamble taken from file `../../main_document/main.tex'
 (/usr/local/texlive/2025/texmf-dist/tex/latex/import/import.sty
 Package: import 2020/04/01  v 6.2
-) (/Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/../../main_document/main.tex (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
+) (/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/../../main_document/main.tex (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
@@ -745,7 +745,12 @@ File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.4.1'
-)) (/usr/local/texlive/2025/texmf-dist/tex/latex/subfiles/subfiles.sty
+)) (/usr/local/texlive/2025/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen312
+\c@nlinenum=\count358
+\TeXr@lab=\toks52
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/subfiles/subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 ))))
 Package xr Info: IMPORTING LABELS FROM ../../main_document/main.aux on input line 3.
@@ -754,9 +759,13 @@ LaTeX Font Info:    Trying to load font information for T1+bch on input line 4.
 File: t1bch.fd 2004/10/18 font definitions for T1/bch.
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count358
+\l__color_backend_stack_int=\count359
 \l__pdf_internal_box=\box87
-) (/Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.aux)
+) (/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.aux
+
+LaTeX Warning: Label `tab: tab_4' multiply defined.
+
+)
 \openout1 = `analisys_results.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -779,17 +788,17 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 4.
 LaTeX Font Info:    ... okay on input line 4.
  (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count359
-\scratchdimen=\dimen312
+\scratchcounter=\count360
+\scratchdimen=\dimen313
 \scratchbox=\box88
-\nofMPsegments=\count360
-\nofMParguments=\count361
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count362
-\MPscratchDim=\dimen313
-\MPnumerator=\count363
-\makeMPintoPDFobject=\count364
-\everyMPtoPDFconversion=\toks53
+\nofMPsegments=\count361
+\nofMParguments=\count362
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count363
+\MPscratchDim=\dimen314
+\MPnumerator=\count364
+\makeMPintoPDFobject=\count365
+\everyMPtoPDFconversion=\toks54
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -853,17 +862,17 @@ File: mt-bch.cfg 2007/03/03 v1.5 microtype config. file: Bitstream Charter (RS)
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: changepage package is loaded.
-\caption@adjustwidth@hsize=\dimen314
-\caption@adjustwidth@linewidth=\dimen315
+\caption@adjustwidth@hsize=\dimen315
+\caption@adjustwidth@linewidth=\dimen316
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring OFF on input line 4.
-(/Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.out) (/Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.out)
+(/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.out) (/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.out)
 \@outlinefile=\write4
 \openout4 = `analisys_results.out'.
 
-\c@lstlisting=\count365
+\c@lstlisting=\count366
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 22.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -904,38 +913,52 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
-LaTeX Font Info:    Trying to load font information for TS1+bch on input line 61.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/ts1bch.fd
+Underfull \hbox (badness 10000) in paragraph at lines 56--59
+
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+bch on input line 70.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/ts1bch.fd
 File: ts1bch.fd 2004/10/18 font definitions for TS1/bch.
 )
 
 [2]
 
-[3{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+[3]
 
 [4]
 
-[5] (/Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.aux)
+[5]
+
+[6{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+
+[7]
+
+[8] (/Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `analisys_results.out' has not changed.
-(rerunfilecheck)             Checksum: 78F31B86E769E8FE8B7DEAC2D582DAF5;3208.
+(rerunfilecheck)             Checksum: 190E531DE97BE340EF57BAA0C2C47593;3723.
  ) 
 Here is how much of TeX's memory you used:
- 32726 strings out of 473190
- 654033 string characters out of 5715799
- 1107225 words of memory out of 5000000
- 55215 multiletter control sequences out of 15000+600000
- 608009 words of font info for 172 fonts, out of 8000000 for 9000
+ 33014 strings out of 473190
+ 656512 string characters out of 5715799
+ 1110186 words of memory out of 5000000
+ 55377 multiletter control sequences out of 15000+600000
+ 619055 words of font info for 249 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 111i,11n,120p,1164b,556s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 111i,17n,120p,1180b,592s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/bitstrea/charter/bchbi8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on /Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.pdf (5 pages, 109934 bytes).
+Output written on /Users/diegoperazzona/DevLoc/calculators_project_Gem5_MarssX86/project_report/chapters/ch3_analysis_results/analisys_results.pdf (8 pages, 122598 bytes).
 PDF statistics:
- 169 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 32517 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 203 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 32549 words of extra memory for PDF output out of 35830 (max. 10000000)
 

@@ -45,103 +45,53 @@ che alla gerarchia di memoria.
     \end{center}
 \end{table}
 
-\noindent
-La differenza più grande risiede nella scelta del core CPU. Infatti, il modello ArmO3 (Out-Of-Order) è circa $4,6$ volte più veloce del modello Minor (In-Order).
-L’IPC passa invece da $3.29$ nella baseline (ottimo risultato) a $0.72$, nel caso della variazione del core CPU (Il numero di istruzioni per ciclo si riduce di molto).
+\subsubsection{Statistiche generali su CPU e istruzioni}
 
-\vspace{8pt}
-\noindent
-Il core O3 riesce ad eseguire più di 3 istruzioni per ciclo grazie all’esecuzione eseguita fuori ordine e grazie anche al parallelismo a livello di istruzione (ILP). Il core Minor, 
-fatica a superare l’istruzione singola in un solo ciclo, a causa del fatto che le istruzioni sono eseguite in-order e probabilmente con meno risorse di issue, e quindi risulta un tempo di esecuzione totale molto più lungo
-per lo stesso carico di lavoro.
+La differenza prestazionale più marcata risiede nella scelta della microarchitettura del core. Il modello \textbf{ArmO3} (Out-of-Order) risulta circa \textbf{4,6 volte più veloce} rispetto al modello \textbf{Minor} (In-Order). Questa disparità è chiaramente riflessa nel valore dell'IPC (Instructions Per Cycle), che crolla da un ottimo \textbf{3,29} nella configurazione baseline a un modesto \textbf{0,72} nel caso del core Minor.
+\\
+Il core O3 riesce a superare la barriera delle 3 istruzioni per ciclo sfruttando l'esecuzione fuori ordine e il parallelismo a livello di istruzione (ILP). Al contrario, il core Minor fatica a completare più di una singola istruzione per ciclo a causa della sua natura \textit{in-order} e di risorse di \textit{issue} limitate; ciò si traduce in un tempo di esecuzione totale significativamente più lungo a parità di carico di lavoro. Nella configurazione con \textbf{cache ridotte}, nonostante la CPU rimanga la stessa (O3), si osserva un degrado dell'IPC che scende a \textbf{1,83}. Questo dimezzamento delle prestazioni è dovuto ai frequenti stalli della pipeline in attesa dei dati recuperati dalla cache L2, la cui latenza è superiore a quella della L1.
 
-\subsubsection{Impatto delle Cache ridotte}
-Utilizzando delle cache ridotte (con CPU ArmO3) si notano diverse cose:
-\begin{itemize}[leftmargin=1em]
-    \item \textbf{Collo di bottiglia della memoria}: La riduzione della cache ha causato l’aumento della percentuale di miss rate della L1 data cache, passando dallo $0,3\%$ all’$8,8\%$;
-    \item \textbf{Effetto sulla gerarchia}: L’aumento dei cache miss di L1 ha spostato il carico sulla cache L2. Si può notare infatti che gli accessi riusciti in L2 passano da $60$ a $254.708$ tra la prima e l’ultima
-	configurazione;
-    \item \textbf{Degrado IPC}: Nonostante la CPU sia la stessa, l’IPC è sceso da $3,29$ a $1,83$. Ciò succede perché la CPU va in stallo molto più frequentemente, in attesa che i dati vengano recuperati dalla L2 (che è più lenta della L1), quasi dimezzando le prestazioni complessive.
-\end{itemize}
+\subsubsection{Statistiche Cache}
 
-\subsubsection{Analisi dei Branch (Previsione dei Salti)}
-Le statistiche sulla predizione dei rami sono molto simili tra le due configurazioni O3:
+\textbf{\textit{Cache hit e Cache Miss L1}}\\
+ L'utilizzo di cache ridotte trasforma la memoria in un collo di bottiglia: il \textit{miss rate} della L1 Data Cache balza dallo \textbf{0,3\%} all'\textbf{8,8\%}, con un incremento dei miss di circa 30 volte. Curiosamente, la Minor CPU registra un numero di \textit{hit} totali molto più alto rispetto alla O3. Questo non dipende dal numero di istruzioni (che resta identico), ma dal fatto che il modello \textit{in-order} può generare accessi ripetuti o gestire il \textit{front-end} con \textit{fetch} più frequenti e meno aggregati rispetto alla struttura complessa della O3. La \textbf{I-Cache} (Instruction Cache) rimane invece estremamente stabile e con miss bassissimi in tutte le configurazioni, suggerendo che il codice del workload sia molto compatto e risieda agevolmente anche in spazi ridotti.
+\\
 
-\begin{itemize}[leftmargin=1em]
-    \item Entrambi hanno lo stesso numero di misprediction (4548), ciò conferma che il workload e il percorso di esecuzione sono identici;
-    \item Il modello Minor CPU mostra un numero leggermente superiore di previsioni errate ($4715$). Ciò può essere dovuto a un predittore di rami meno sofisticato implementato nel modello Minor rispetto a quello del core O3.
-\end{itemize}
+\vspace{5pt} \noindent \textbf{\textit{Cache hit e Cache Miss L2}}\\
+L'inefficienza della L1 nelle configurazioni con cache ridotte sposta il carico sulla L2, dove gli \textit{hit} passano da appena \textbf{60} a oltre \textbf{254.000}. Il numero di \textit{L2 Misses} assoluti, tuttavia, resta pressoché identico in tutti i casi (circa \textbf{2100}). Questo indica che il \textit{working set} totale del programma entra perfettamente nella L2 e che i miss registrati sono esclusivamente \textbf{Compulsory Misses} (dati caricati dalla DRAM solo all'inizio).
+\\
+Si osserva un paradosso statistico nel \textit{miss rate} della L2: esso appare altissimo nella baseline (\textbf{97,22\%}) e bassissimo nel caso \textit{small cache} (\textbf{0,82\%}). Questo accade perché nella baseline la L1 filtra quasi tutto, mandando in L2 solo le richieste "impossibili" (che falliscono); nel caso delle cache ridotte, la L1 manda in L2 una quantità enorme di richieste "facili" che hanno successo, diluendo il numero di miss e abbassando artificialmente la percentuale, nonostante il sistema stia operando più lentamente a causa della latenza superiore della L2.
 
-\vspace{8pt}
-\noindent
-\textbf{Cond. Incorrect} indica il numero di volte in cui il predittore ha sbagliato a prevedere la direzione di un salto condizionale (quelli derivanti da un if o un ciclo for/while), mentre \textbf{Branch Mispredicts (Commit)} è un dato più “globale”.
-Include tutti i tipi di salti, non solo quelli condizionali, ma anche i ritorni da funzioni o salti indiretti, che sono arivati alla fine della pipeline.
+\subsubsection{Analisi dei Branch}
 
-\vspace{8pt}
-\noindent
-Anche se il numero di errori di predizione rimane simile, il costo di ogni errore aumenta drasticamente quando le cache sono piccole.\\
-Nella CPU O3 un salto viene “risolto” solo quando l’istruzione di salto viene eseguita. Se la condizione di salto dipende da un dato che deve essere caricato dalla memoria:
-\begin{itemize}[leftmargin=1em]
-    \item \textbf{Baseline}: il dato può essere trovato in L1 e viene risolto velocemente, altrimenti, se è sbagliato, la CPU se ne accorge e pulisce la pipeline;
-    \item \textbf{Small Cache}: Potrebbe esserci un miss in L1. La CPU deve aspettare i cicli della L2, ma nel frattempo continua a fare l’elaborazione lungo il percorso sbagliato, caricando istruzioni inutili.
-\end{itemize}
+Le statistiche sulla predizione dei rami mostrano valori simili tra le configurazioni O3 (4548 mispredizioni), confermando l'identità del percorso di esecuzione del carico di lavoro. Il modello Minor CPU presenta un numero leggermente superiore di previsioni errate (\textbf{4715}), probabilmente a causa di un hardware di predizione meno sofisticato.
 
-\subsubsection{Branch Mispredicts (Commit)}
-In questa riga della tabella, per la CPU \textit{ArmMinorCPU}, troviamo la dicitura N/D*.\\
-Questo dato è causato della differenza dell’architettura, infatti, nelle CPU O3 esiste uno stadio di Commit (ritiro delle istruzioni).\\
-Il parametro \textit{“system.cpu.commit.branchMispredicts”} conta solo i salti sbagliati che arrivano effettivamente alla fine della pipeline.
-La Minor CPU è un modello In-Order. Non ha una struttura di Commit separata come il modello O3, quindi la statistica con quel nome non viene generata.
-Il valore $4715$ che si ha nella riga sopra appartiene al parametro \textit{“system.cpu.branchPred.condIncorrect”} (o \textit{“system.cpu.branchPred.mispredict\_0::total”}).\\
-Sebbene rappresenti tecnicamente le predizioni errate, viene calcolato in una fase diversa della pipeline (spesso in Execute o Decode) e non è metodologicamente identico al valore di Commit dell’O3.
+\vspace{5pt} \noindent È fondamentale distinguere tra le metriche riportate: \begin{itemize}[leftmargin=1.5em]
+     \item \textbf{\textit{Cond. Incorrect}}: indica quante volte il predittore ha sbagliato la direzione di un salto condizionale (derivante da istruzioni come \textit{if} o cicli). 
+     \item \textbf{\textit{Branch Mispredicts (Commit)}}: è un dato globale che include tutti i tipi di salti (ritorni di funzione, salti indiretti, ecc.) che hanno completato l'intera pipeline. 
+    \end{itemize}
 
-\vspace{8pt}
-\noindent
-Il concetto di \textbf{\textit{Commit}}: in un processore moderno, l’esecuzione di un’istruzione avviene in diverse fasi. La fase di Commit (o Retire) è l’ultima, rappresenta \textbf{il momento in cui il processore è sicuro al 100\% che quell’istruzione debba essere eseguita} scrivendone i risultati permanenti nei registri.
+\vspace{5pt} \noindent Nella tabella, la voce \textit{Commit} per \textbf{ArmMinorCPU} è contrassegnata come \textbf{N/D*} per ragioni architettoniche. Nelle CPU O3, il \textit{Commit} (o \textit{Retire}) è l'ultima fase della pipeline, dove i risultati diventano permanenti e il processore è certo che l'istruzione dovesse essere eseguita. Le CPU O3 usano la \textbf{speculazione}: scommettono sulla direzione di un salto e lavorano preventivamente. Se la scommessa è errata, il lavoro viene "buttato via" (\textit{squash}). La statistica di \textit{Commit} conta solo gli errori che arrivano alla fine di questa catena, rappresentando l'impatto reale sulle prestazioni.
 
-\begin{itemize}[leftmargin=1em]
-    \item \textbf{Nella CPU O3}: Il processore esegue le istruzioni non nell’ordine in cui appaiono nel codice, ma non appena le risorse sono pronte.\\
-    Usa la speculazione: quando incontra un branch (un “if”), scommette sulla direzione (preso o non preso) e continua a lavorare.
-    Se non “vince la scommessa”, il processoire deve buttare via tutto il lavoro fatto dopo il salto. La statistica “commit.branchMispredicts” conta solo i salti sbagliati che arrivano alla fine della “catena di montaggio”.
-    È il dato più preciso perché conta solo gli errori che hanno effettivamente rallentato il programma reale.
-    \item \textbf{Nella CPU Minor}: Non esiste una fase di Commit separata e complessa come nell’O3.\\
-    Le istruzioni fluiscono in modo lineare (Fetch$\rightarrow$Decode$\rightarrow$Execute), e , non appena il processore scopre che un salto è sbagliato (nello stadio di Execute), ferma tutto e ricomincia.\\
-    Per questo gem5 non usa il termine “commit” per la Minor: l’istruzione viene “corretta” non appena l’errore è scoperto.
-\end{itemize}
-
-\vspace{8pt}
-\noindent
-Quindi, \textbf{O3} utilizza \textit{“commit.branchMispredicts”} perché è il parametro che misura l’impatto reale sulle prestaizoni finali (le istruzioni che hanno completato tutto il ciclo), mentre \textbf{Minor} utilizza \textit{“condIncorrect”} perché, pur essendo un modello semplificato “passo-dopo-passo”, ogni errore rilevato durante l’esecuzione comporta un reset immeidato della pipeline, rendendo superflua la distinzione del “commit”. 
- 
-\subsubsection{Cache hit e Cache miss}
-Nella versione con cache ridotte, i miss della L1 Data Cache aumentano di circa 30 volte.\\
-Il carico si sposta sulla L2 che vede infatti un incremento massiccio degli hit.\\
-La L2 riesce a “tamponare” gran parte dei miss della L1,
-evitando che la CPU debba andare direttamente in RAM, ma la latenza aggiuntiva della L2 è comunque sufficiente a rallentare L’IPC.
-
-\vspace{8pt}
-\noindent
-Per quanto riguarda le differenze tra le CPU, la Minor CPU registra un numero di hit (sia I-cache che D-cache) molto più alto rispetto alla baseline O3, nonostante il numero di istruzioni totali sia quasi identico.
-Questo accade perché il modello Minor (in-order) può generare accessi alla memoria in modo differente o ripetuto, oppure perché la gestione delle istruzioni nel front-end della Minor CPU richiede più fetch per completare lo stesso blocco di codice rispetto alla struttura out-of-order.
-
-\vspace{8pt}
-\noindent
-I miss della I-Cache rimangono estremamente bassi e costanti in tutte le configurazioni. Questo suggerisce che il codice del workload è molto piccolo e sta comodamente anche in una cache ridotta, mentre sono i dati (D-Cache) a soffrire la riduzione
-dello spazio.
-
-\vspace{8pt}
-\noindent
-Curiosamente, il numero di L2 Misses è quasi identico in tutti e tre i casi (circa $2100$).\\
-Ciò significa che il set di dati totale necessario al programma entra perfettamente nella L2 (sia quella standard che quella della versione ridotta), e la memoria principale (DRAM) viene interpellata solo nella fase iniziale di caricamento.\\
-Il fatto che le percentuali siano alte nei primi due casi e molto bassa nel terzo dipende dalla “necessità” di accedere alla cache L2, ovvero: nei primi due casi il rate di miss è molto alto perché non c’è bisogno di utilizzare la cache L2,
-mentre nel terzo caso si arriva ad utilizzarla per colpa della dimensione ridotta delle cache L1, ma il numero di miss è molto basso.
+Nella CPU Minor, essendo \textit{in-order}, non esiste uno stadio di \textit{Commit} separato: le istruzioni fluiscono linearmente e, se un salto è errato, la pipeline viene resettata immediatamente nello stadio di \textit{Execute}. Pertanto, gem5 utilizza il parametro \textit{condIncorrect} per la Minor, mentre per la O3 il dato di \textit{Commit} risulta più preciso per misurare il rallentamento effettivo. Il "costo" di ogni errore di predizione aumenta drasticamente con cache piccole: se il dato per risolvere il salto è in L2 anziché in L1, la CPU O3 specula "al buio" per più tempo lungo il percorso errato, caricando istruzioni inutili e sprecando cicli.
 
 \subsubsection{Conclusioni}
-L’architettura O3, per questo specifico workload, risulta dominante.\\
-Il parallelismo del core O3 compensa infatti la sua complessità, terminando il compito in una frazione del tempo del core Minor.
-La dimensione della cache L1 è critica: il workload sembra avere un working set che entra comodamente nella cache L1 standard della baseline, ma non in quella ridotta. La dipendenza dalla L2, nel caso della cache ridotta,
-introduce una latenza che la CPU O3 non riesce a nascondere completamente portando a un rallentamento del 45\% rispetto alla baseline.\\
-Il core Minor è limitato dal front-end, ovvero dalla sua natura “in-order”, non riuscendo a sfruttare le risorse di esecuzione anche quando i dati sono disponibili (considerando anche il basso miss rate delle cache).
 
+L'analisi comparativa tra le diverse configurazioni architetturali e gerarchie di memoria permette di trarre conclusioni fondamentali sul bilanciamento di un sistema di calcolo:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Dominanza dell'architettura Out-of-Order}: per il carico di lavoro analizzato, il core \textbf{O3} si è dimostrato superiore in termini di throughput. Il parallelismo a livello di istruzione (ILP) estratto dal core compensa ampiamente la complessità hardware, permettendo di completare il task in una frazione del tempo richiesto dal core \textbf{Minor}.
+    
+    \item \textbf{Criticità della Cache L1}: la dimensione della cache di primo livello è il vero ago della bilancia prestazionale. Il workload presenta un \textit{working set} che risiede agevolmente nella L1 standard, ma l'impiego di una cache ridotta causa un effetto a catena: l'incremento del miss rate sposta il carico sulla L2, introducendo latenze che nemmeno un core avanzato come l'O3 riesce a mascherare, portando a un rallentamento medio del $45\%$ (fino a rendere l'O3 meno efficiente di un core In-Order in ambito RISC-V).
+    
+    \item \textbf{Limiti del core In-Order}: il modello Minor è strutturalmente limitato dal proprio front-end. La sua natura \textit{single-issue} non permette di sfruttare appieno le unità di esecuzione anche quando i dati sono disponibili in cache, rendendolo una scelta valida solo in contesti di estremo risparmio energetico o dove le risorse di memoria sono talmente scarse da annullare i benefici della speculazione.
+    
+    \item \textbf{Saturazione della Gerarchia}: i circa $2100$ miss costanti in L2 (per ARM) e $3010$ (per RISC-V) rappresentano i \textbf{Compulsory Misses} del programma. Questo dato indica che il limite fisico minimo di accessi alla memoria principale (DRAM) è intrinseco al codice stesso e rimane invariato indipendentemente dalla potenza del processore o dalla dimensione delle cache intermedie.
+\end{itemize}
+\noindent
+In conclusione, l'esperimento evidenzia che una CPU potente è efficace solo se supportata da un sistema di memoria equilibrato. La scelta dell'architettura deve quindi basarsi non solo sulla velocità teorica del core, ma sulla capacità della gerarchia di memoria di alimentare costantemente la pipeline, evitando che la speculazione diventi un costo anziché un vantaggio.
+
+\newpage
 \subsection{Analisi delle tre configurazioni per l'architettura RISC-V}
 \begin{table}[tbh] % per piazzare la tabella t:top b:bottom h:here in ordine di preferenza; h è sconsigliato
     \begin{center}
@@ -171,38 +121,117 @@ Il core Minor è limitato dal front-end, ovvero dalla sua natura “in-order”,
     \end{center}
 \end{table}
 \noindent
-In RISCV la \textbf{CPU O3} è circa $1,7$ volte più veloce della \textbf{Minor CPU}, parlando di tempo di simulazione.
-L’IPC della baseline risulta essere $1,408,$ quindi superiore a poco più di un’istruzione per ciclo, grazie alla capacità di eseguire le istruzioni fuori ordine e parallelizzare le operazioni.
-Il core Minor, che invece segue l’ordine del codice, subisce più stalli strutturali e dipendenze tra dati, portando il tempo di esecuzione totale a quasi 6ms contro i $3,5$ms della baseline.
+\subsubsection{Statistiche generali su CPU e istruzioni}
 
-\subsubsection{Impatto delle cache ridotte}
-La configurazione O3 con le cache ridotte diventa la più lenta, persino della CPU Minor.\\
-Il tempo di simulazione è infatti il più alto tra le tre configurazioni, rendendo questa configurazione la meno efficiente.
-Questo succede perché un core Out-Of-Order è estremamente sensibile alla latenza di memoria.\\ 
-Quando la L1 D-Cache diventa un collo di bottiglia (il miss rate sale da $0,47\%$ nella baseline a $7,08\%$ nella configurazione con cache ridotte), le strutture interne della CPU si riempiono di istruzioni in attesa dei dati. Inoltre, l’IPC arriva a $0,789$.\\
-In questa situazione, la complessità dell’architettura O3 diventa un peso: la CPU occupa più tempo a gestire stalli e speculazioni fallite che a eseguire codice utile.
+Nell'architettura RISC-V, la CPU \textbf{O3} (Out-of-Order) si dimostra circa \textbf{1,7 volte più veloce} della \textbf{Minor CPU} in termini di tempo di simulazione nella configurazione baseline. L'IPC della baseline risulta pari a \textbf{1,408}, un valore che evidenzia la capacità del core di processare più di un'istruzione per ciclo grazie all'esecuzione fuori ordine e al parallelismo a livello di istruzione (ILP). Al contrario, il core Minor, vincolato dall'esecuzione sequenziale (\textit{in-order}), subisce maggiormente l'impatto di stalli strutturali e dipendenze tra i dati, portando il tempo di esecuzione a quasi \textbf{6 ms} contro i \textbf{3,5 ms} della baseline.
 
-\vspace{8pt}
-\noindent
-L’analisi dei flussi di memoria rivela un comportamento gerarchico ben definito.\\
-La I-Cache rimane più o meno stabile in tutte le configurazioni, ciò indica che il codice eseguibile è piccolo e risiede agevolmente anche in cache ridotte.\\
-Per quanto riguarda la L1 D-Cache, nella baseline essa filtra quasi tutto. Alla L2 arrivano circa $3000$ richieste, che però falliscono quasi tutte (infatti il miss rate è al $98,7\%$), ma si tratta dei \textbf{Compulsory Misses}, ovvero dati nuovi mai visti prima.\\
-Nella versione Small Caches, la L1 espelle molti dati. La L2 viene investita da oltre $235.000$ accessi (Hits) che erano gestiti dalla L1 nelle altre configurazioni.
-Il Miss Rate della L2 scende all’$1,26\%$, ma la L2 sta solo facendo il lavoro che la L1 non può più fare, introducendo una latenza maggiore che rallenta l’intero sistema.
+\vspace{5pt} \noindent Tuttavia, l'efficienza del core O3 è strettamente legata alla gerarchia di memoria. Nella configurazione con \textbf{cache ridotte}, la CPU O3 subisce un degrado tale da diventare la più lenta delle tre configurazioni (\textbf{6,36 ms}), risultando persino meno efficiente del modello Minor. Questo accade perché l'architettura fuori ordine è estremamente sensibile alla latenza: quando la L1 D-Cache diventa un collo di bottiglia (con un \textit{miss rate} che balza dallo 0,47\% al \textbf{7,08\%}), le strutture interne della CPU si saturano in attesa dei dati. In questo scenario, l'IPC crolla a \textbf{0,789} e la complessità del core O3 diventa un onere, poiché il processore occupa più tempo a gestire stalli e speculazioni fallite che a eseguire codice utile.
 
-\subsubsection{Analisi dei Branch (Previsione dei Salti)}
-Il numero di predizioni errate è molto simile tra le versioni O3, segno che il percorso logico del software non cambia. Nella configurazione Small caches, pur avendo lo stesso numero di errori, 
-la CPU paga un prezzo maggiore in termini di cicli di stallo perché impiega più tempo recuperare i dati necessari a risolvere la condizione del salto (a causa dei miss in L1);
+\subsubsection{Statistiche Cache}
+
+\textbf{\textit{Cache hit e Cache Miss L1}}\\
+ L'analisi dei flussi rivela una \textbf{I-Cache} (Instruction Cache) estremamente stabile in tutte le configurazioni (miss rate 0,10\%), indicando che il codice eseguibile è compatto e risiede agevolmente in memoria. La criticità è invece concentrata sulla \textbf{L1 D-Cache}: nella baseline essa filtra la quasi totalità delle richieste, ma nella versione \textit{small cache} subisce un'espulsione massiccia di dati, portando il numero di miss da circa 16k a oltre \textbf{252k}.
+
+\vspace{5pt} \noindent \textbf{\textit{Cache hit e Cache Miss L2}}\ Nella configurazione baseline, la L2 riceve solo circa 3000 richieste, che falliscono quasi integralmente (\textit{miss rate} 98,7\%). Si tratta di \textbf{Compulsory Misses}, ovvero il caricamento iniziale di dati mai visti prima. Nella versione con cache ridotte, la L2 viene invece investita da oltre \textbf{235.000 accessi} (hits) precedentemente gestiti dalla L1. Sebbene il \textit{miss rate} della L2 scenda paradossalmente all'\textbf{1,26\%}, ciò riflette solo il fatto che la L2 sta supplendo alle carenze della L1, introducendo però una latenza d'accesso superiore che penalizza l'intero sistema.
+
+\subsubsection{Analisi dei Branch}
+
+Il numero di predizioni errate è molto simile tra le due versioni O3 (4729 mispredicts al commit), confermando che il percorso logico del software non cambia. Nella configurazione con cache ridotte, pur restando costante il numero di errori, la CPU paga un prezzo molto più alto in termini di cicli di stallo, poiché i miss in L1 ritardano il recupero dei dati necessari a risolvere la condizione del salto.
+
+\vspace{5pt} \noindent \textbf{Confronto O3 vs Minor e impatto della latenza}\ Analizzando la distinzione tra \textit{condIncorrect} (errori sui salti condizionali) e \textit{commit.branchMispredicts} (dato globale al ritiro), si osserva che: \begin{itemize}[leftmargin=1.5em] \item \textbf{Configurazione Minor}: come previsto, la voce \textit{Commit} riporta \textbf{N/D*} per l'assenza di uno stadio di ritiro separato. Il valore di \textit{condIncorrect} (4898) è leggermente superiore ai modelli O3, suggerendo che il predittore integrato nel core Minor sia meno raffinato. \item \textbf{Latenza di risoluzione}: nella versione con cache ridotte, l'alto tasso di miss in L1 D-Cache rallenta drasticamente il calcolo delle condizioni nello stadio di \textit{Execute}. La CPU rimane in uno stato di \textbf{"incertezza speculativa"} per un tempo prolungato, causando un incremento delle istruzioni \textit{squashed} (caricate inutilmente lungo percorsi errati) che contribuisce al crollo dell'IPC. \end{itemize}
 
 \subsubsection{Conclusioni}
-In architetture RISC-V, un core potente (O3) senza una cache adeguata è controproducente.\\
-In scenari con memoria limitata, un core più semplice (In-Order) può risultare più veloce e prevedibile.
-Il limite del sistema è chiaramente la L1 Data Cache.\\
-Le dimensioni della L1 Instruction Cache e della L2 sono invece adeguate per questo specifico carico di lavoro.
-I circa $3000$ miss in L2 rappresentano il limite fisico del workload, ovvero la quantità minima di dati che deve essere caricata dalla memoria principale (DRAM) indipendentemente dall’efficienza dei core.
+
+L'analisi comparativa su architettura RISC-V mette in luce dinamiche differenti rispetto a quanto osservato per ARM, evidenziando un equilibrio ancora più precario tra potenza di calcolo e sottosistema di memoria:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Superiorità condizionata dell'architettura Out-of-Order}: nella configurazione baseline, il core \textbf{O3} si dimostra circa $1,7$ volte più veloce del modello Minor. Tuttavia, l'IPC di $1,408$ suggerisce che il parallelismo estratto (ILP) sia inferiore rispetto ad altre architetture, rendendo il vantaggio della speculazione meno netto e più dipendente dall'efficienza delle cache.
+    
+    \item \textbf{Il "sorpasso" della Minor CPU}: a differenza di ARM, in RISC-V la criticità della cache L1 è tale da ribaltare le gerarchie di potenza. Nella configurazione \textbf{Small Caches}, il core O3 diventa il meno efficiente del gruppo ($6,36$ms), venendo superato in termini di tempo di esecuzione persino dal core \textbf{Minor} ($5,99$ms). Questo dimostra che, se la memoria non è in grado di alimentare la pipeline, la complessità dell'esecuzione fuori ordine diventa un ostacolo anziché un beneficio.
+    
+    \item \textbf{Prevedibilità del core In-Order}: il modello Minor, pur essendo limitato dalla sua natura \textit{single-issue} e dalla mancanza di uno stadio di commit complesso, si dimostra più resiliente alle variazioni del sistema di memoria. In scenari con risorse limitate, la sua esecuzione lineare evita i pesanti costi di "svuotamento" della pipeline (squash) che affliggono il core O3 quando la latenza di risoluzione dei branch aumenta.
+    
+    \item \textbf{Saturazione della Gerarchia}: i circa $3010$ miss costanti registrati in L2 rappresentano i \textbf{Compulsory Misses} del carico di lavoro RISC-V. Questo valore indica la soglia minima di accessi alla DRAM necessaria per caricare il set di dati iniziale; il fatto che tale numero resti invariato conferma che il collo di bottiglia prestazionale risiede esclusivamente nella latenza di accesso ai dati (L1 vs L2) e non nel volume totale dei dati stessi.
+\end{itemize}
+
+\noindent
+In conclusione, l'esperimento su RISC-V sottolinea un principio fondamentale della progettazione hardware: \textbf{un core complesso richiede una gerarchia di memoria proporzionata}. Senza una cache L1 adeguata, l'architettura O3 "affama" se stessa, rendendo paradossalmente preferibile una microarchitettura più semplice e lineare come quella del core Minor.
 
 
 \subsection{Analisi delle tre configurazioni per l'architettura MarssX86}
+
+
 \subsection{Analisi delle baseline tra le architetture}
+\begin{table}[tbh]
+    \begin{center}
+        \begin{tabular}{|l|c|c|c|}
+            \hline
+                \textit{Metrica} & 
+                \textit{Baseline (Arm O3)} & 
+                \textit{Baseline (RISC-V)} & 
+                \makecell{\textit{Baseline user}\\\textit{(MarssX86)}} \\
+
+            \hline
+            Tempo di simulazione (s) & $0,001186$ & $0,003567$ & $9$ \\
+            Istruzioni Simulate & $7.807.648$ & $10.043.070$ & $7.449.759$ \\
+            Cicli CPU & $2.371.349$ & $7.134.755$ & $12.474.800$\\
+            IPC (Instructions Per Cycle) & $3,292$ & $1,408$ & $0,597$ \\
+            CPI (Cycles Per Instruction) & $0,304$ & $0,710$ & $1,675$ \\
+            Branch Cond. Incorrect & $4637$ & $4816$ & $--$ \\
+            Branch Mispredicts (Commit) & $4548$ & $4725$ & $4.561$ \\
+            L1 D-Cache Hits & $2.975.995$ & $3.551.546$ & $3.265.122$  \\
+            L1 D-Cache Misses & $8.943$ & $16.645$ & $1.139$ \\
+            L1 D-Cache Miss Rate & $0,30\%$ & $0,47\%$ & $0,03\%$ \\
+            L1 I-Cache Hits & $572.369$ & $600.802$ & $1.191$ \\
+            L1 I-Cache Misses & $462$ & $619$ & $519$ \\
+            L1 I-Cache Misses Rate & $0,08\%$ & $0,10\%$ & $30,35\%$\\
+            L2 Cache Hits & $60$ & $40$ & $21$ \\ 
+            L2 Cache Misses & $2096$ & $3010$ & $1.637$ \\
+            L2 Cache Misses Rate & $97,22\%$ & $98,69\%$ & $97,6\%$ \\
+            \hline
+        \end{tabular}
+        \caption{Tabella delle tre baseline a confronto}
+
+        \vspace{8pt}
+        \textbf{\textit{Note}}: Per MarssX86 sono stati isolati i dati relativi al solo workload utente.
+        \label{tab: tab_4}
+    \end{center}
+\end{table}
+
+\subsubsection{Statistiche generali su CPU e istruzioni}
+
+L'analisi delle prestazioni generali illustrata in tabella \ref{tab: tab_4}, rivela un netto vantaggio per l'architettura \textit{ARM O3}, che svetta con un IPC di $3,292$. Questo indica una pipeline estremamente efficiente nel gestire il parallelismo a livello di istruzione (ILP) per il workload di moltiplicazione di matrici, completando il compito in soli $1,18$ ms simulati.\\
+Il \textit{RISC-V} si posiziona in una fascia intermedia con un IPC di $1,408$. Sebbene esegua un numero maggiore di istruzioni totali ($10,04$M) rispetto ad ARM, la sua efficienza per ciclo è inferiore, portando a un tempo di simulazione tre volte superiore ($3,56$ ms).\\
+La baseline di \textit{MarssX86} mostra invece l'IPC più basso ($0,597$). È fondamentale sottolineare che, avendo isolato la componente \textit{user} (il workload applicativo) dalla componente \textit{kernel} (il sistema operativo), l'IPC registrato riflette la complessità della decodifica x86 e la presenza di stalli nella pipeline che persistono nonostante l'ottimizzazione del codice utente.
+
+\subsubsection{Statistiche Cache}
+
+L'efficienza del sottosistema di memoria gioca un ruolo fondamentale nel determinare i risultati prestazionali sopra descritti.
+
+\vspace{8pt}
+\noindent
+\textbf{\textit{Cache hit e Cache Miss L1}}\\
+Isolando le statistiche del workload (\textit{User mode}) in MarssX86, emerge un dato estremamente positivo per la L1 D-Cache: il miss rate scende allo $0,03\%$, uil valore più basso tra le tre architetture. Questo dimostra che l'algoritmo di moltiplicazione di matrici è perfettamente ottimizzato per la gerarchia di memoria x86. \\
+Tuttavia, persiste un miss rate anomalo nella L1 I-Cache ($30,35\%$). Analizzando il numero assoluto di accessi ($1.710$), si deduce che tale valore è un artefatto statistico: trattandosi di un workload breve, i \textit{cold miss} (miss obbligatori al primo caricamento delle istruzioni) pesano sproporzionatamente sulla statistica finale, a differenza di ARM e RISC-V dove il volume di istruzioni simulate permette di ammortizzare questi costi iniziali.
+
+\vspace{8pt}
+\noindent
+\textbf{\textit{Cache hit e Cache Miss L2}}\\
+Per tutte e tre le architetture, il miss rate in L2 è prossimo al $98\%$. Questo fenomeno è tipico di workload i cui dati risiedono quasi interamente in L1 ($128$ kB). Poiché la L1 filtra con successo quasi tutti gli accessi del workload utente (come confermato dal miss rate dello $0,03\%$ su x86), alla L2 giungono pochissime richieste, rendendo statisticamente dominante ogni singolo miss dovuto a dati non ancora mappati.
+
+\subsubsection{Analisi dei Branch}
+Nonostante le differenze di throughput, il comportamento del \textit{Branch Predictor} è coerente tra le architetture, con errori di predizione che oscillano tra $4.500$ e $4.800$.
+
+\vspace{8pt}
+\noindent
+Come evidenziato dai dati, per i modelli Out-of-Order (O3) il parametro di riferimento è il \textit{Branch Mispredicts (Commit)}. In queste CPU, il processore esegue istruzioni in modo speculativo: se la "scommessa" sul salto è errata, l'errore viene rilevato e contabilizzato solo nella fase finale di \textbf{Commit}. I circa $4.500$ errori rappresentano i salti che hanno effettivamente causato il \textit{flush} (svuotamento) della pipeline, impattando direttamente sul CPI finale. 
+
+\vspace{8pt}
+\noindent
+In sintesi, l'isolamento della componente \textit{user} in MarssX86 conferma che il collo di bottiglia non risiede nella gestione dei dati (D-Cache estremamente efficiente), ma nella penalità di decodifica x86 e nei miss iniziali di caricamento delle istruzioni, che in un workload così breve condizionano pesantemente l'IPC finale.
+
+\subsubsection{Conclusioni}
+In conclusione, il confronto tra le tre baseline evidenzia come l'architettura \textbf{ARM O3} sia la più performante per il workload di calcolo matriciale, grazie a un bilanciamento ottimale tra velocità di clock simulata e gestione della pipeline. Il \textbf{RISC-V} si conferma un'architettura solida con un'efficienza predicibile, mentre \textbf{MarssX86} rivela che, nonostante un'eccellente gestione dei dati (D-Cache), soffre di un overhead maggiore nella gestione del flusso di istruzioni. L'analisi "User-only" è stata fondamentale per distinguere le reali prestazioni dell'algoritmo dal rumore di fondo generato dal sistema operativo simulato, permettendo un confronto più equo tra le diverse tecnologie.
+
 
 \end{document}

@@ -1,36 +1,40 @@
-\contentsline {section}{\numberline {1}Installazione e setup dei simulatori per Windows e macOS}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Premessa fondamentale: architetture e compatibilità}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Installazione e setup del simulatore Gem5}{2}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Installazione e setup di Gem5 su Windows}{2}{subsubsection.1.2.1}%
-\contentsline {subsubsection}{\numberline {1.2.2}Installazione e setup di Gem5 su macOS}{5}{subsubsection.1.2.2}%
-\contentsline {subsection}{\numberline {1.3}Installazione e setup del simulatore MarssX86}{7}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Installazione e setup di MarssX86 su Windows}{7}{subsubsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.3.2}Installazione e setup di MarssX86 su macOS}{12}{subsubsection.1.3.2}%
-\contentsline {section}{\numberline {2}Esecuzione di un workload tramite i simulatori}{15}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Definizione di "piccolo workload"}{15}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Problema metodologico}{16}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Il caso Gem5 in modalità (SE)}{16}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Il caso MarssX86 (FS)}{17}{subsubsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.3}Strategia adottata}{17}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Metodologia e Configurazione degli Esperimenti}{18}{subsection.2.4}%
-\contentsline {subsubsection}{\numberline {2.4.1}Matrice dei test e definizione delle Baseline}{18}{subsubsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.5}Esecuzione del workload per ARM e RISC-V (Gem5)}{19}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Installazione dei cross-compilatori su Windows (x86\_64)}{19}{subsubsection.2.5.1}%
-\contentsline {subsubsection}{\numberline {2.5.2}Installazione dei cross-compilatori su macOS (ARM)}{20}{subsubsection.2.5.2}%
-\contentsline {subsubsection}{\numberline {2.5.3}Comandi per la build del workload}{20}{subsubsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.6}Esecuzione del workload per X86 (MarssX86)}{21}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}Implementazione della metodologia ROI}{22}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {2.6.2}Comandi per la build del workload}{26}{subsubsection.2.6.2}%
-\contentsline {section}{\numberline {3}Analisi dei dati raccolti}{28}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Analisi delle tre configurazioni per l'architettura ARM}{28}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Impatto delle Cache ridotte}{29}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Analisi dei Branch (Previsione dei Salti)}{29}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}Branch Mispredicts (Commit)}{29}{subsubsection.3.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.4}Cache hit e Cache miss}{30}{subsubsection.3.1.4}%
-\contentsline {subsubsection}{\numberline {3.1.5}Conclusioni}{31}{subsubsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.2}Analisi delle tre configurazioni per l'architettura RISC-V}{31}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Impatto delle cache ridotte}{32}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Analisi dei Branch (Previsione dei Salti)}{32}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Conclusioni}{32}{subsubsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.3}Analisi delle tre configurazioni per l'architettura MarssX86}{32}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Analisi delle baseline tra le architetture}{32}{subsection.3.4}%
+\contentsline {section}{\numberline {1}Installazione e setup dei simulatori per Windows e macOS}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Premessa fondamentale: architetture e compatibilità}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Installazione e setup del simulatore Gem5}{3}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Installazione e setup di Gem5 su Windows}{3}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Installazione e setup di Gem5 su macOS}{6}{subsubsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.3}Installazione e setup del simulatore MarssX86}{8}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Installazione e setup di MarssX86 su Windows}{8}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Installazione e setup di MarssX86 su macOS}{13}{subsubsection.1.3.2}%
+\contentsline {section}{\numberline {2}Esecuzione di un workload tramite i simulatori}{16}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Definizione di "piccolo workload"}{16}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Problema metodologico}{17}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Il caso Gem5 in modalità (SE)}{17}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Il caso MarssX86 (FS)}{18}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}Strategia adottata}{18}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Metodologia e Configurazione degli Esperimenti}{19}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Matrice dei test e definizione delle Baseline}{19}{subsubsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.5}Esecuzione del workload per ARM e RISC-V (Gem5)}{20}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Installazione dei cross-compilatori su Windows (x86\_64)}{20}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Installazione dei cross-compilatori su macOS (ARM)}{21}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.3}Comandi per la build del workload}{21}{subsubsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.6}Esecuzione del workload per X86 (MarssX86)}{22}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Implementazione della metodologia ROI}{23}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Comandi per la build del workload}{27}{subsubsection.2.6.2}%
+\contentsline {section}{\numberline {3}Analisi dei dati raccolti}{29}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Analisi delle tre configurazioni per l'architettura ARM}{29}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Statistiche generali su CPU e istruzioni}{29}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Statistiche Cache}{30}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Analisi dei Branch}{30}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Conclusioni}{31}{subsubsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.2}Analisi delle tre configurazioni per l'architettura RISC-V}{32}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Statistiche generali su CPU e istruzioni}{32}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Statistiche Cache}{32}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Analisi dei Branch}{33}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Conclusioni}{33}{subsubsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.3}Analisi delle tre configurazioni per l'architettura MarssX86}{34}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Analisi delle baseline tra le architetture}{34}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Statistiche generali su CPU e istruzioni}{34}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Statistiche Cache}{35}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Analisi dei Branch}{35}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Conclusioni}{36}{subsubsection.3.4.4}%

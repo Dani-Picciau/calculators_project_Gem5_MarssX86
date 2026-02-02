@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.22)  2 FEB 2026 09:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.22)  2 FEB 2026 15:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -740,7 +740,12 @@ File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.4.1'
-)) (/usr/local/texlive/2025/texmf-dist/tex/latex/subfiles/subfiles.sty
+)) (/usr/local/texlive/2025/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen312
+\c@nlinenum=\count358
+\TeXr@lab=\toks52
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/subfiles/subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/import/import.sty
 Package: import 2020/04/01  v 6.2
@@ -750,7 +755,7 @@ LaTeX Font Info:    Trying to load font information for T1+bch on input line 4.
 File: t1bch.fd 2004/10/18 font definitions for T1/bch.
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count358
+\l__color_backend_stack_int=\count359
 \l__pdf_internal_box=\box87
 ) (./main.aux)
 \openout1 = `main.aux'.
@@ -775,17 +780,17 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 4.
 LaTeX Font Info:    ... okay on input line 4.
  (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count359
-\scratchdimen=\dimen312
+\scratchcounter=\count360
+\scratchdimen=\dimen313
 \scratchbox=\box88
-\nofMPsegments=\count360
-\nofMParguments=\count361
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count362
-\MPscratchDim=\dimen313
-\MPnumerator=\count363
-\makeMPintoPDFobject=\count364
-\everyMPtoPDFconversion=\toks53
+\nofMPsegments=\count361
+\nofMParguments=\count362
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count363
+\MPscratchDim=\dimen314
+\MPnumerator=\count364
+\makeMPintoPDFobject=\count365
+\everyMPtoPDFconversion=\toks54
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -849,8 +854,8 @@ File: mt-bch.cfg 2007/03/03 v1.5 microtype config. file: Bitstream Charter (RS)
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: changepage package is loaded.
-\caption@adjustwidth@hsize=\dimen314
-\caption@adjustwidth@linewidth=\dimen315
+\caption@adjustwidth@hsize=\dimen315
+\caption@adjustwidth@linewidth=\dimen316
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -859,9 +864,9 @@ Package hyperref Info: Link coloring OFF on input line 4.
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
-\c@lstlisting=\count365
+\c@lstlisting=\count366
  (../chapters/index/index.tex
-<../figures/logo_uniss.pdf, id=187, 418.56375pt x 177.66376pt>
+<../figures/logo_uniss.pdf, id=203, 418.56375pt x 177.66376pt>
 File: ../figures/logo_uniss.pdf Graphic file (type pdf)
 <use ../figures/logo_uniss.pdf>
 Package pdftex.def Info: ../figures/logo_uniss.pdf  used on input line 7.
@@ -905,18 +910,20 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 [1
 
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc} <../figures/logo_uniss.pdf>] (./main.toc)
-\tf@toc=\write5
-\openout5 = `main.toc'.
-
-)
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc} <../figures/logo_uniss.pdf>] (./main.toc
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.7     \newpage
-                 [1] (../chapters/ch1_installation_setup/installation_setup.tex
+l.40 ....4.4}Conclusioni}{36}{subsubsection.3.4.4}
+                                                  % [1])
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+)
+
+[2] (../chapters/ch1_installation_setup/installation_setup.tex
 LaTeX Font Info:    Trying to load font information for TS1+bch on input line 14.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/ts1bch.fd
 File: ts1bch.fd 2004/10/18 font definitions for TS1/bch.
@@ -929,14 +936,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<../figures/../figures/chapter1_figures/img1.png, id=244, 590.205pt x 163.61125pt>
+<../figures/../figures/chapter1_figures/img1.png, id=268, 590.205pt x 163.61125pt>
 File: ../figures/../figures/chapter1_figures/img1.png Graphic file (type png)
 <use ../figures/../figures/chapter1_figures/img1.png>
 Package pdftex.def Info: ../figures/../figures/chapter1_figures/img1.png  used on input line 46.
 (pdftex.def)             Requested size: 362.77264pt x 100.56664pt.
 
 
-[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+[3{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
@@ -963,16 +970,16 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 76.
 
 
-[3 <../figures/../figures/chapter1_figures/img1.png>]
-<../figures/../figures/chapter1_figures/img2.png, id=278, 1452.42625pt x 463.7325pt>
+[4 <../figures/../figures/chapter1_figures/img1.png>]
+<../figures/../figures/chapter1_figures/img2.png, id=302, 1452.42625pt x 463.7325pt>
 File: ../figures/../figures/chapter1_figures/img2.png Graphic file (type png)
 <use ../figures/../figures/chapter1_figures/img2.png>
 Package pdftex.def Info: ../figures/../figures/chapter1_figures/img2.png  used on input line 123.
 (pdftex.def)             Requested size: 483.69687pt x 154.43323pt.
 
 
-[4 <../figures/../figures/chapter1_figures/img2.png>]
-<../figures/../figures/chapter1_figures/img3.png, id=298, 588.69937pt x 98.86937pt>
+[5 <../figures/../figures/chapter1_figures/img2.png>]
+<../figures/../figures/chapter1_figures/img3.png, id=322, 588.69937pt x 98.86937pt>
 File: ../figures/../figures/chapter1_figures/img3.png Graphic file (type png)
 <use ../figures/../figures/chapter1_figures/img3.png>
 Package pdftex.def Info: ../figures/../figures/chapter1_figures/img3.png  used on input line 151.
@@ -981,55 +988,53 @@ Package pdftex.def Info: ../figures/../figures/chapter1_figures/img3.png  used o
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 
-[5 <../figures/../figures/chapter1_figures/img3.png>]
+[6 <../figures/../figures/chapter1_figures/img3.png>]
 
-[6{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+[7{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 
-[7]
-<../figures/../figures/chapter1_figures/img4.png, id=369, 699.61375pt x 202.7575pt>
+[8]
+<../figures/../figures/chapter1_figures/img4.png, id=393, 699.61375pt x 202.7575pt>
 File: ../figures/../figures/chapter1_figures/img4.png Graphic file (type png)
 <use ../figures/../figures/chapter1_figures/img4.png>
 Package pdftex.def Info: ../figures/../figures/chapter1_figures/img4.png  used on input line 295.
 (pdftex.def)             Requested size: 362.77264pt x 105.1375pt.
 
 
-[8 <../figures/../figures/chapter1_figures/img4.png>]
+[9 <../figures/../figures/chapter1_figures/img4.png>]
 
-[9]
-<../figures/../figures/chapter1_figures/img5.png, id=419, 789.95125pt x 291.0875pt>
+[10]
+<../figures/../figures/chapter1_figures/img5.png, id=444, 789.95125pt x 291.0875pt>
 File: ../figures/../figures/chapter1_figures/img5.png Graphic file (type png)
 <use ../figures/../figures/chapter1_figures/img5.png>
 Package pdftex.def Info: ../figures/../figures/chapter1_figures/img5.png  used on input line 398.
 (pdftex.def)             Requested size: 314.40001pt x 115.85107pt.
 
 
-[10 <../figures/../figures/chapter1_figures/img5.png>]
+[11 <../figures/../figures/chapter1_figures/img5.png>]
 
-[11]
-<../figures/../figures/chapter1_figures/img7.png, id=476, 1151.30125pt x 611.28375pt>
+[12]
+<../figures/../figures/chapter1_figures/img7.png, id=501, 1151.30125pt x 611.28375pt>
 File: ../figures/../figures/chapter1_figures/img7.png Graphic file (type png)
 <use ../figures/../figures/chapter1_figures/img7.png>
 Package pdftex.def Info: ../figures/../figures/chapter1_figures/img7.png  used on input line 457.
 (pdftex.def)             Requested size: 338.58632pt x 179.76749pt.
 
 
-[12 <../figures/../figures/chapter1_figures/img7.png>]
-<../figures/../figures/chapter1_figures/img6.png, id=496, 588.1975pt x 133.49875pt>
+[13 <../figures/../figures/chapter1_figures/img7.png>]
+<../figures/../figures/chapter1_figures/img6.png, id=520, 588.1975pt x 133.49875pt>
 File: ../figures/../figures/chapter1_figures/img6.png Graphic file (type png)
 <use ../figures/../figures/chapter1_figures/img6.png>
 Package pdftex.def Info: ../figures/../figures/chapter1_figures/img6.png  used on input line 497.
 (pdftex.def)             Requested size: 435.32422pt x 98.80176pt.
 
 
-[13 <../figures/../figures/chapter1_figures/img6.png>])
+[14 <../figures/../figures/chapter1_figures/img6.png>])
 
-[14] (../chapters/ch2_workload_execution/workload_execution.tex
-
-[15]
+[15] (../chapters/ch2_workload_execution/workload_execution.tex
 
 [16]
 
@@ -1044,49 +1049,62 @@ Package pdftex.def Info: ../figures/../figures/chapter1_figures/img6.png  used o
 [21]
 
 [22]
+
+[23]
 LaTeX Font Info:    Font shape `TS1/pcr/m/it' in size <10.95> not available
 (Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 353.
 
-
-[23]
 
 [24]
 
 [25]
 
-[26])
+[26]
 
-[27] (../chapters/ch3_analysis_results/analisys_results.tex
+[27])
 
-[28]
+[28] (../chapters/ch3_analysis_results/analisys_results.tex
 
 [29]
+Underfull \hbox (badness 10000) in paragraph at lines 56--59
+
+ []
+
+
 
 [30]
 
-[31])
+[31]
 
-[32] (./main.aux)
+[32]
+
+[33]
+
+[34]
+
+[35])
+
+[36] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 44D20AA8B43635103D675C1367FEC04B;9574.
+(rerunfilecheck)             Checksum: B10B8971C84ABF84BA65AE110BF67CFA;10089.
  ) 
 Here is how much of TeX's memory you used:
- 34732 strings out of 473190
- 679752 string characters out of 5715799
- 1593634 words of memory out of 5000000
- 56527 multiletter control sequences out of 15000+600000
- 632433 words of font info for 271 fonts, out of 8000000 for 9000
+ 34994 strings out of 473190
+ 682694 string characters out of 5715799
+ 1596548 words of memory out of 5000000
+ 56689 multiletter control sequences out of 15000+600000
+ 640952 words of font info for 329 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 91i,11n,101p,1093b,2568s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 91i,17n,101p,1220b,2568s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/bitstrea/charter/bchbi8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on main.pdf (33 pages, 1028409 bytes).
+Output written on main.pdf (37 pages, 1038466 bytes).
 PDF statistics:
- 1056 PDF objects out of 1200 (max. 8388607)
- 950 compressed objects within 10 object streams
- 535 named destinations out of 1000 (max. 500000)
- 46053 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 1099 PDF objects out of 1200 (max. 8388607)
+ 989 compressed objects within 10 object streams
+ 544 named destinations out of 1000 (max. 500000)
+ 46085 words of extra memory for PDF output out of 51595 (max. 10000000)
 
