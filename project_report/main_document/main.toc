@@ -33,8 +33,12 @@
 \contentsline {subsubsection}{\numberline {3.2.3}Analisi dei Branch}{33}{subsubsection.3.2.3}%
 \contentsline {subsubsection}{\numberline {3.2.4}Conclusioni}{33}{subsubsection.3.2.4}%
 \contentsline {subsection}{\numberline {3.3}Analisi delle tre configurazioni per l'architettura MarssX86}{34}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Analisi delle baseline tra le architetture}{34}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Statistiche generali su CPU e istruzioni}{34}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Statistiche Cache}{35}{subsubsection.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.3}Analisi dei Branch}{35}{subsubsection.3.4.3}%
-\contentsline {subsubsection}{\numberline {3.4.4}Conclusioni}{36}{subsubsection.3.4.4}%
+\contentsline {subsubsection}{\numberline {3.3.1}Statistiche generali su CPU e istruzioni}{35}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Statistiche Cache}{35}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Analisi dei Branch}{36}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Conclusioni}{36}{subsubsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.4}Analisi delle baseline tra le architetture}{37}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Statistiche generali su CPU e istruzioni}{38}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Statistiche Cache}{38}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Analisi dei Branch}{38}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Conclusioni}{39}{subsubsection.3.4.4}%
