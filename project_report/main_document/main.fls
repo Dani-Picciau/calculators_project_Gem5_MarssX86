@@ -355,6 +355,7 @@ INPUT ../figures/logo.pdf
 INPUT ../figures/logo.pdf
 INPUT ../figures/logo.pdf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchr8t.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchb8t.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
@@ -410,7 +411,6 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/bitstrea/charter/bchr8t.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchr8r.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/bitstrea/charter/bchr8t.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchr8r.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchr8t.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/bitstrea/charter/bchb8t.tfm
 INPUT ./main.toc
 INPUT ./main.toc

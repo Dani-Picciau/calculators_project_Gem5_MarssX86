@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1770052782.85859 "/Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/main_document/main.tex" "main.pdf" "main" 1770052784.6074 0
+["pdflatex"] 1770053498.26244 "/Users/d.picciaustudenti.uniss.it/Desktop/uniss/Calcolatori_Elettronici/calculators_project_Gem5_MarssX86/project_report/main_document/main.tex" "main.pdf" "main" 1770053500.05714 0
   "../chapters/ch1_installation_setup/installation_setup.tex" 1769675221.37811 38203 0fcc7d85dab80108259cc8f15b696f99 ""
   "../chapters/ch2_workload_execution/workload_execution.tex" 1769886707.00842 34197 856495333356c583d5335bf816dca921 ""
-  "../chapters/ch3_analysis_results/analisys_results.tex" 1770052079.60239 35346 2dda26c5466c9d6aad17a04e0968013e ""
-  "../chapters/index/index.tex" 1770052782.67667 987 f440a830015b179e8c34acb2bb7beeb1 ""
+  "../chapters/ch3_analysis_results/analisys_results.tex" 1770053061.13613 35346 2dda26c5466c9d6aad17a04e0968013e ""
+  "../chapters/index/index.tex" 1770053498.00884 987 f3ce39805acf812d7d86f6fe5199e6ff ""
   "../figures/../figures/chapter1_figures/img1.png" 1768427301.68576 12413 44d971560e500fde527b73f2b7c6fa4e ""
   "../figures/../figures/chapter1_figures/img2.png" 1768434538.54082 181655 5c14c4dc39d23b127569998d511dc1d0 ""
   "../figures/../figures/chapter1_figures/img3.png" 1768470539.67953 100394 3626d24524b0d923909dc3698f7e21b7 ""
@@ -281,10 +281,10 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1764288388 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1764288316 3345743 71640d6abb0540349421d01c5cd0a99f ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "main.aux" 1770052784.48374 10079 28e37f4c3528d5aab87b51a886bab3ec "pdflatex"
-  "main.out" 1770052784.48511 10815 d63fb67702589f3290dab54541e83c36 "pdflatex"
+  "main.aux" 1770053499.94191 10079 28e37f4c3528d5aab87b51a886bab3ec "pdflatex"
+  "main.out" 1770053499.94333 10815 d63fb67702589f3290dab54541e83c36 "pdflatex"
   "main.tex" 1769274691.08412 397 08eab6c72c202d535fc693d27bec548b ""
-  "main.toc" 1770052784.48551 4691 227ab5603e44cf3c6bd987ae848ebfe7 "pdflatex"
+  "main.toc" 1770053499.94369 4691 227ab5603e44cf3c6bd987ae848ebfe7 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
