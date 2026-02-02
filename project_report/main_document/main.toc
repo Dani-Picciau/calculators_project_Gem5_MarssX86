@@ -22,3 +22,15 @@
 \contentsline {subsubsection}{\numberline {2.6.1}Implementazione della metodologia ROI}{22}{subsubsection.2.6.1}%
 \contentsline {subsubsection}{\numberline {2.6.2}Comandi per la build del workload}{26}{subsubsection.2.6.2}%
 \contentsline {section}{\numberline {3}Analisi dei dati raccolti}{28}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Analisi delle tre configurazioni per l'architettura ARM}{28}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Impatto delle Cache ridotte}{29}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Analisi dei Branch (Previsione dei Salti)}{29}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Branch Mispredicts (Commit)}{29}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Cache hit e Cache miss}{30}{subsubsection.3.1.4}%
+\contentsline {subsubsection}{\numberline {3.1.5}Conclusioni}{31}{subsubsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.2}Analisi delle tre configurazioni per l'architettura RISC-V}{31}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Impatto delle cache ridotte}{32}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Analisi dei Branch (Previsione dei Salti)}{32}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Conclusioni}{32}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}Analisi delle tre configurazioni per l'architettura MarssX86}{32}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Analisi delle baseline tra le architetture}{32}{subsection.3.4}%
